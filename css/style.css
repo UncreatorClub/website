@@ -1,0 +1,19 @@
+.glass-card {
+    background: rgba(24, 24, 27, 0.7);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(208, 188, 255, 0.1);
+}
+.glow-violet:hover {
+    box-shadow: 0 0 20px rgba(208, 188, 255, 0.4);
+}
+.glow-cyan:hover {
+    box-shadow: 0 0 20px rgba(76, 215, 246, 0.4);
+}
+.glow-lime:hover {
+    box-shadow: 0 0 20px rgba(152, 218, 39, 0.4);
+}
+.text-gradient-primary {
+    background: linear-gradient(to right, #d0bcff, #4cd7f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
