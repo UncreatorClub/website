@@ -27,3 +27,113 @@
 .border-editorial {
     border-color: #E5DDD0;
 }
+
+/* Modal overlay classes */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(26, 29, 32, 0.4);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+}
+.modal-backdrop.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+.modal-container {
+    width: 100%;
+    max-width: 600px;
+    background-color: #FAF7F2; /* Warm Alabaster */
+    border: 1px solid #E5DDD0;
+    border-radius: 0.25rem;
+    box-shadow: 0 20px 50px -12px rgba(26, 29, 32, 0.15);
+    margin: 16px;
+    max-height: calc(100vh - 32px);
+    overflow-y: auto;
+    transform: translateY(20px);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.modal-backdrop.active .modal-container {
+    transform: translateY(0);
+}
+
+/* Form Styling */
+.editorial-input {
+    width: 100%;
+    background-color: #F2ECE1; /* Parchment */
+    border: 1px solid #E5DDD0;
+    border-radius: 0.125rem;
+    padding: 12px 16px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: #1A1D20;
+    transition: all 0.2s ease;
+}
+.editorial-input:focus {
+    outline: none;
+    border-color: #C95D4A; /* Terracotta */
+    background-color: #FAF7F2;
+    box-shadow: 0 0 0 2px rgba(201, 93, 74, 0.15);
+}
+
+/* Custom checkbox & radio design */
+.editorial-checkbox, .editorial-radio {
+    display: none;
+}
+.editorial-select-card {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    background-color: #F2ECE1;
+    border: 1px solid #E5DDD0;
+    border-radius: 0.125rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+.editorial-select-card:hover {
+    border-color: #C95D4A;
+    background-color: #FAF7F2;
+}
+.editorial-checkbox:checked + .editorial-select-card,
+.editorial-radio:checked + .editorial-select-card {
+    border-color: #C95D4A;
+    background-color: #F6EAE7; /* Very soft terracotta shade */
+}
+.checkbox-icon, .radio-icon {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #E5DDD0;
+    margin-right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FAF7F2;
+    transition: all 0.2s ease;
+}
+.editorial-checkbox:checked + .editorial-select-card .checkbox-icon {
+    background-color: #C95D4A;
+    border-color: #C95D4A;
+    color: #FAF7F2;
+}
+.editorial-radio:checked + .editorial-select-card .radio-icon {
+    border-color: #E5DDD0;
+}
+.editorial-radio:checked + .editorial-select-card .radio-icon::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background-color: #C95D4A;
+    border-radius: 50%;
+}
+.radio-icon {
+    border-radius: 50%;
+}
