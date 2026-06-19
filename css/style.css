@@ -52,7 +52,7 @@
 .modal-container {
     width: 100%;
     max-width: 600px;
-    background-color: #FAF7F2; /* Warm Alabaster */
+    background-color: #FCF9F2; /* Warm Alabaster */
     border: 1px solid #E5DDD0;
     border-radius: 0.25rem;
     box-shadow: 0 20px 50px -12px rgba(26, 29, 32, 0.15);
@@ -80,7 +80,7 @@
 .editorial-input:focus {
     outline: none;
     border-color: #C95D4A; /* Terracotta */
-    background-color: #FAF7F2;
+    background-color: #FCF9F2;
     box-shadow: 0 0 0 2px rgba(201, 93, 74, 0.15);
 }
 
@@ -101,7 +101,7 @@ input.editorial-checkbox, input.editorial-radio {
 }
 .editorial-select-card:hover {
     border-color: #C95D4A;
-    background-color: #FAF7F2;
+    background-color: #FCF9F2;
 }
 .editorial-checkbox:checked + .editorial-select-card,
 .editorial-radio:checked + .editorial-select-card {
@@ -116,7 +116,7 @@ input.editorial-checkbox, input.editorial-radio {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #FAF7F2;
+    background-color: #FCF9F2;
     transition: all 0.2s ease;
 }
 .editorial-checkbox:checked + .editorial-select-card .checkbox-icon {
@@ -127,7 +127,7 @@ input.editorial-checkbox, input.editorial-radio {
     content: '✓';
     font-size: 12px;
     font-weight: bold;
-    color: #FAF7F2;
+    color: #FCF9F2;
 }
 .editorial-radio:checked + .editorial-select-card .radio-icon {
     border-color: #C95D4A;
@@ -142,3 +142,4 @@ input.editorial-checkbox, input.editorial-radio {
 .radio-icon {
     border-radius: 50%;
 }
+
