@@ -1,328 +1,609 @@
-<!DOCTYPE html>
-<html class="light" lang="en">
+<!doctype html>
+<html lang="en" data-layout="zine" data-palette="mango">
 <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Uncreator.Club | The Bridge Between Consumer Perception, Creator Influence &amp; Brand Growth</title>
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@600&amp;display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-    
-    <!-- Tailwind Play CDN -->
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <!-- Tailwind CSS Config -->
-    <script src="js/tailwind-config.js"></script>
-    
-    <!-- Custom CSS -->
-    <link href="css/style.css" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Uncreator.club brings ambitious brands and India's new creators into the same room.">
+  <title>Uncreator.club — You’re finally in the room</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #ff6f61;
+      --secondary: #fff9f2;
+      --accent: #2d9cdb;
+      --highlight: #f9c74f;
+      --ink: #222222;
+      --paper: #fffdf9;
+      --muted: #695f59;
+      --line: rgba(34, 34, 34, .18);
+      --shadow: 6px 7px 0 rgba(34, 34, 34, .92);
+      --display: "Syne", sans-serif;
+      --body: "DM Sans", sans-serif;
+      --hand: "Caveat", cursive;
+      --max: 1280px;
+    }
+
+    html[data-palette="mango"] {
+      --primary: #ff6b35;
+      --secondary: #fff2e6;
+      --accent: #1fa6a6;
+      --highlight: #ffb703;
+      --ink: #2b2118;
+      --paper: #fffbf7;
+      --muted: #6d5b4b;
+      --line: rgba(43, 33, 24, .19);
+      --shadow: 6px 7px 0 rgba(43, 33, 24, .92);
+    }
+
+    html[data-palette="india"] {
+      --primary: #f45b69;
+      --secondary: #faf3e8;
+      --accent: #4361ee;
+      --highlight: #f4a261;
+      --ink: #2d2a26;
+      --paper: #fffdf9;
+      --muted: #6c655d;
+      --line: rgba(45, 42, 38, .19);
+      --shadow: 6px 7px 0 rgba(45, 42, 38, .92);
+    }
+
+    html[data-palette="nimbu"] {
+      --primary: #c9f227;
+      --secondary: #f6ffe1;
+      --accent: #6c4cff;
+      --highlight: #16c7a1;
+      --ink: #17171d;
+      --paper: #fffef7;
+      --muted: #5f6256;
+      --line: rgba(23, 23, 29, .18);
+      --shadow: 6px 7px 0 rgba(23, 23, 29, .92);
+    }
+
+    html[data-palette="rosechai"] {
+      --primary: #e95664;
+      --secondary: #fff1dc;
+      --accent: #7557d9;
+      --highlight: #e3a23b;
+      --ink: #30251f;
+      --paper: #fffbf3;
+      --muted: #745f54;
+      --line: rgba(48, 37, 31, .19);
+      --shadow: 6px 7px 0 rgba(48, 37, 31, .92);
+    }
+
+    html[data-palette="monsoon"] {
+      --primary: #ff8a4c;
+      --secondary: #191b27;
+      --accent: #50c9e8;
+      --highlight: #f4d35e;
+      --ink: #f7f2e7;
+      --paper: #242735;
+      --muted: #b9b7c4;
+      --line: rgba(247, 242, 231, .2);
+      --shadow: 6px 7px 0 rgba(80, 201, 232, .78);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--secondary);
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 16px;
+      line-height: 1.55;
+      transition: background-color .25s ease, color .25s ease;
+    }
+    button, input, select { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+    .skip-link { position: fixed; left: 16px; top: -80px; z-index: 1000; background: var(--ink); color: var(--paper); padding: 10px 14px; }
+    .skip-link:focus { top: 16px; }
+    .shell { width: min(var(--max), calc(100% - 48px)); margin: 0 auto; }
+    .eyebrow { margin: 0 0 14px; font: 700 12px/1 var(--display); letter-spacing: .14em; text-transform: uppercase; }
+    .scribble { font-family: var(--hand); font-weight: 700; }
+    .button {
+      min-height: 48px;
+      border: 2px solid var(--ink);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 20px;
+      background: var(--primary);
+      color: var(--ink);
+      font: 700 14px/1 var(--display);
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 4px 4px 0 var(--ink);
+      transition: transform .18s ease, box-shadow .18s ease, background-color .2s ease;
+    }
+    .button:hover { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--ink); }
+    .button--quiet { background: var(--paper); }
+    .button--ink { background: var(--ink); color: var(--secondary); }
+    .arrow { font-size: 20px; line-height: 0; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: color-mix(in srgb, var(--secondary) 92%, transparent);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+    }
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { text-decoration: none; font: 800 clamp(24px, 3vw, 34px)/.9 var(--display); letter-spacing: -.07em; color: var(--primary); }
+    .brand span { color: var(--ink); font-size: .52em; letter-spacing: -.03em; }
+    .navlinks { display: flex; align-items: center; gap: 30px; }
+    .navlinks a { position: relative; text-decoration: none; font-weight: 600; font-size: 14px; }
+    .navlinks a::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -5px; height: 3px; background: var(--primary); transition: right .2s ease; }
+    .navlinks a:hover::after { right: 0; }
+
+    .hero { min-height: 730px; padding: 80px 0 64px; overflow: hidden; }
+    .hero-grid { display: grid; grid-template-columns: 1.08fr .92fr; gap: 72px; align-items: center; }
+    .hero h1 { margin: 0; max-width: 820px; font: 800 clamp(54px, 7.4vw, 106px)/.9 var(--display); letter-spacing: -.075em; }
+    .hero h1 .room { color: var(--primary); display: inline-block; }
+    .hero-lede { max-width: 620px; margin: 28px 0 32px; font-size: clamp(17px, 1.7vw, 21px); color: var(--muted); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+    .micro-proof { display: flex; align-items: center; gap: 12px; margin-top: 34px; font-size: 13px; font-weight: 600; }
+    .faces { display: flex; }
+    .face { width: 34px; height: 34px; margin-right: -8px; border: 2px solid var(--secondary); border-radius: 50%; display: grid; place-items: center; background: var(--accent); color: white; font: 700 10px var(--display); }
+    .face:nth-child(2) { background: var(--highlight); color: var(--ink); }
+    .face:nth-child(3) { background: var(--primary); }
+
+    .stage { min-height: 540px; position: relative; }
+    .stage-panel { display: none; position: absolute; inset: 0; }
+    html[data-layout="scrapbook"] .stage-scrapbook,
+    html[data-layout="noticeboard"] .stage-noticeboard,
+    html[data-layout="festival"] .stage-festival,
+    html[data-layout="club"] .stage-club,
+    html[data-layout="zine"] .stage-zine,
+    html[data-layout="orbit"] .stage-orbit { display: block; }
+
+    .polaroid { position: absolute; width: 56%; padding: 12px 12px 44px; background: white; border: 1px solid rgba(0,0,0,.12); box-shadow: 0 14px 28px rgba(34,34,34,.14); }
+    .polaroid::after { content: attr(data-label); position: absolute; bottom: 9px; left: 18px; font: 700 20px var(--hand); color: #222; }
+    .polaroid.one { left: 0; top: 64px; transform: rotate(-6deg); }
+    .polaroid.two { right: 0; top: 12px; transform: rotate(7deg); }
+    .photo { aspect-ratio: 4 / 4.5; position: relative; overflow: hidden; background: var(--accent); }
+    .photo::before, .photo::after { content: ""; position: absolute; border-radius: 50%; }
+    .photo::before { width: 42%; aspect-ratio: 1; left: 30%; top: 14%; background: var(--highlight); }
+    .photo::after { width: 86%; height: 60%; left: 7%; bottom: -20%; border-radius: 45% 45% 0 0; background: var(--primary); }
+    .photo.alt { background: var(--highlight); }
+    .photo.alt::before { background: var(--primary); left: 16%; }
+    .photo.alt::after { background: var(--accent); left: -5%; width: 110%; }
+    .tape { position: absolute; width: 108px; height: 28px; background: color-mix(in srgb, var(--highlight) 72%, white); opacity: .9; z-index: 3; transform: rotate(-12deg); }
+    .tape.t1 { top: 44px; left: 74px; }
+    .tape.t2 { top: 0; right: 74px; transform: rotate(9deg); }
+    .sticker { position: absolute; z-index: 4; display: grid; place-items: center; background: var(--ink); color: var(--secondary); font: 800 13px/1 var(--display); text-align: center; text-transform: uppercase; }
+    .sticker-round { width: 106px; aspect-ratio: 1; border-radius: 50%; right: -14px; bottom: 60px; transform: rotate(-8deg); }
+    .sticker-note { left: 34px; bottom: 4px; padding: 14px 18px; background: var(--highlight); color: var(--ink); transform: rotate(3deg); border: 2px solid var(--ink); }
+
+    .board { height: 100%; padding: 26px; background: color-mix(in srgb, var(--highlight) 36%, var(--secondary)); border: 12px solid var(--ink); box-shadow: var(--shadow); display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-content: start; }
+    .pin-card { position: relative; padding: 20px; min-height: 160px; background: var(--paper); border: 2px solid var(--ink); box-shadow: 3px 4px 0 color-mix(in srgb, var(--ink) 85%, transparent); transform: rotate(-1deg); }
+    .pin-card:nth-child(2) { background: var(--primary); transform: rotate(2deg); }
+    .pin-card:nth-child(3) { grid-column: 1 / -1; background: var(--accent); color: white; transform: rotate(.5deg); }
+    .pin { position: absolute; width: 13px; height: 13px; top: 8px; left: 50%; background: var(--ink); border-radius: 50%; box-shadow: 2px 3px 0 rgba(0,0,0,.2); }
+    .pin-card small { display: block; margin-bottom: 10px; font: 700 10px var(--display); letter-spacing: .12em; text-transform: uppercase; }
+    .pin-card strong { display: block; font: 700 23px/1.05 var(--display); }
+    .pin-card p { margin: 10px 0 0; font-size: 13px; }
+
+    .festival-art { height: 100%; position: relative; background: var(--primary); border: 3px solid var(--ink); overflow: hidden; box-shadow: var(--shadow); }
+    .festival-art .sun { position: absolute; width: 310px; aspect-ratio: 1; border-radius: 50%; background: var(--highlight); border: 3px solid var(--ink); right: -64px; top: -50px; }
+    .festival-art .wave { position: absolute; width: 430px; height: 220px; border-radius: 50%; background: var(--accent); border: 3px solid var(--ink); left: -110px; bottom: -80px; transform: rotate(9deg); }
+    .festival-art .poster-copy { position: absolute; inset: 58px 34px auto; z-index: 2; font: 800 clamp(48px, 6vw, 82px)/.79 var(--display); letter-spacing: -.07em; text-transform: uppercase; }
+    .festival-art .date { position: absolute; z-index: 3; right: 24px; bottom: 22px; padding: 10px 14px; background: var(--ink); color: var(--secondary); font: 700 12px var(--display); transform: rotate(-4deg); }
+    .festival-art .spark { position: absolute; z-index: 2; left: 42%; top: 58%; font: 800 86px/1 var(--display); color: var(--highlight); -webkit-text-stroke: 3px var(--ink); }
+
+    .member-card { height: 360px; padding: 28px; position: relative; background: var(--ink); color: var(--secondary); border: 3px solid var(--ink); box-shadow: var(--shadow); overflow: hidden; }
+    .member-card::after { content: "UC"; position: absolute; right: -18px; bottom: -56px; color: var(--primary); font: 800 180px/.8 var(--display); letter-spacing: -.1em; opacity: .85; }
+    .member-card .card-top { display: flex; justify-content: space-between; align-items: start; font: 700 11px var(--display); letter-spacing: .1em; text-transform: uppercase; }
+    .member-card .badge { width: 94px; aspect-ratio: 1; margin-top: 58px; border-radius: 50%; border: 2px solid var(--secondary); display: grid; place-items: center; color: var(--highlight); font: 800 34px var(--display); }
+    .member-card h3 { position: relative; z-index: 2; margin: 22px 0 0; font: 700 30px/1 var(--display); }
+    .rankings { width: 88%; margin: -30px 0 0 auto; position: relative; z-index: 3; background: var(--paper); border: 2px solid var(--ink); padding: 18px; box-shadow: 4px 4px 0 var(--accent); }
+    .ranking { display: grid; grid-template-columns: 28px 1fr auto; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 12px; font-weight: 700; }
+    .ranking:last-child { border: 0; }
+    .ranking span:last-child { color: var(--accent); }
+
+    .zine-cover { height: 100%; position: relative; overflow: hidden; background: var(--highlight); border: 3px solid var(--ink); box-shadow: var(--shadow); }
+    .stage-zine .zine-cover { height: calc(100% - 104px); }
+    .zine-cover::before { content: "ISSUE 001"; position: absolute; left: 24px; top: 22px; z-index: 4; font: 800 11px var(--display); letter-spacing: .15em; }
+    .zine-masthead { position: absolute; z-index: 3; left: -3px; right: -3px; top: 58px; padding: 7px 18px 12px; background: var(--ink); color: var(--secondary); font: 800 clamp(55px, 6vw, 84px)/.8 var(--display); letter-spacing: -.08em; white-space: nowrap; }
+    .zine-portrait { position: absolute; left: 20%; right: 8%; top: 158px; bottom: 24px; background: var(--accent); border: 3px solid var(--ink); overflow: hidden; }
+    .zine-portrait::before { content: ""; position: absolute; width: 38%; aspect-ratio: 1; border-radius: 50%; left: 33%; top: 13%; background: var(--primary); border: 3px solid var(--ink); }
+    .zine-portrait::after { content: ""; position: absolute; width: 82%; height: 58%; border-radius: 48% 48% 0 0; left: 9%; bottom: -13%; background: var(--secondary); border: 3px solid var(--ink); }
+    .zine-side { position: absolute; z-index: 4; left: 22px; bottom: 29px; writing-mode: vertical-rl; transform: rotate(180deg); font: 800 13px var(--display); letter-spacing: .13em; text-transform: uppercase; }
+    .zine-burst { position: absolute; z-index: 5; right: 5px; top: 138px; width: 108px; aspect-ratio: 1; display: grid; place-items: center; border-radius: 50%; background: var(--primary); border: 3px solid var(--ink); text-align: center; font: 800 12px/1.05 var(--display); transform: rotate(9deg); }
+    .zine-rankings { position: absolute; right: -8px; bottom: 0; width: 78%; margin: 0; transform: rotate(-1deg); }
+
+    .orbit-map { height: 100%; position: relative; overflow: hidden; background: var(--ink); border: 3px solid var(--ink); box-shadow: var(--shadow); }
+    .orbit-ring { position: absolute; left: 50%; top: 50%; border: 2px solid color-mix(in srgb, var(--secondary) 72%, transparent); border-radius: 50%; transform: translate(-50%, -50%); }
+    .orbit-ring.r1 { width: 180px; aspect-ratio: 1; }
+    .orbit-ring.r2 { width: 340px; aspect-ratio: 1; }
+    .orbit-ring.r3 { width: 510px; aspect-ratio: 1; }
+    .orbit-core { position: absolute; z-index: 3; left: 50%; top: 50%; width: 120px; aspect-ratio: 1; display: grid; place-items: center; border-radius: 50%; transform: translate(-50%, -50%); background: var(--primary); color: var(--ink); border: 3px solid var(--secondary); font: 800 38px var(--display); }
+    .orbit-node { position: absolute; z-index: 4; min-width: 92px; padding: 10px 12px; background: var(--paper); color: var(--ink); border: 2px solid var(--secondary); font: 700 11px/1.1 var(--display); box-shadow: 3px 3px 0 var(--accent); }
+    .orbit-node.n1 { left: 7%; top: 18%; transform: rotate(-4deg); }
+    .orbit-node.n2 { right: 5%; top: 23%; transform: rotate(5deg); }
+    .orbit-node.n3 { left: 11%; bottom: 15%; transform: rotate(3deg); }
+    .orbit-node.n4 { right: 8%; bottom: 12%; transform: rotate(-3deg); }
+    .orbit-caption { position: absolute; z-index: 3; left: 20px; right: 20px; bottom: 18px; color: var(--secondary); font: 700 10px var(--display); letter-spacing: .12em; text-align: center; text-transform: uppercase; }
+
+    .ticker { overflow: hidden; border-block: 2px solid var(--ink); background: var(--highlight); }
+    .ticker-track { width: max-content; display: flex; gap: 32px; padding: 12px 0; font: 800 14px/1 var(--display); text-transform: uppercase; animation: ticker 25s linear infinite; }
+    @keyframes ticker { to { transform: translateX(-50%); } }
+
+    .section { padding: 112px 0; }
+    .section--paper { background: var(--paper); }
+    .section-head { display: grid; grid-template-columns: .8fr 1.2fr; gap: 60px; margin-bottom: 54px; align-items: end; }
+    .section h2 { margin: 0; font: 800 clamp(40px, 5.2vw, 72px)/.94 var(--display); letter-spacing: -.06em; }
+    .section-intro { margin: 0 0 4px; color: var(--muted); font-size: 18px; max-width: 620px; }
+    .bridge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .bridge-card { position: relative; min-height: 410px; padding: 38px; border: 2px solid var(--ink); overflow: hidden; }
+    .bridge-card:first-child { background: var(--primary); }
+    .bridge-card:last-child { background: var(--accent); color: white; }
+    .bridge-card .num { font: 800 13px var(--display); letter-spacing: .12em; }
+    .bridge-card h3 { max-width: 430px; margin: 84px 0 18px; font: 700 clamp(31px, 3.6vw, 50px)/.95 var(--display); letter-spacing: -.045em; }
+    .bridge-card p { max-width: 470px; margin: 0; font-size: 16px; }
+    .bridge-card .big-letter { position: absolute; right: -20px; bottom: -48px; color: rgba(255,255,255,.16); font: 800 230px/.8 var(--display); }
+
+    .steps { counter-reset: step; display: grid; grid-template-columns: repeat(3, 1fr); border: 2px solid var(--ink); }
+    .step { counter-increment: step; min-height: 280px; padding: 32px; background: var(--secondary); border-right: 2px solid var(--ink); }
+    .step:last-child { border-right: 0; }
+    .step::before { content: "0" counter(step); display: block; margin-bottom: 62px; font: 800 12px var(--display); color: var(--primary); }
+    .step h3 { margin: 0 0 14px; font: 700 25px/1.05 var(--display); letter-spacing: -.035em; }
+    .step p { margin: 0; color: var(--muted); font-size: 14px; }
+
+    .opportunities { display: grid; grid-template-columns: 1.15fr .85fr; gap: 24px; }
+    .opportunity-main { min-height: 450px; background: var(--highlight); border: 2px solid var(--ink); padding: 38px; display: flex; flex-direction: column; justify-content: space-between; }
+    .opportunity-main h3 { margin: 0; max-width: 670px; font: 800 clamp(42px, 5vw, 70px)/.92 var(--display); letter-spacing: -.06em; }
+    .opportunity-main p { max-width: 560px; }
+    .opportunity-stack { display: grid; gap: 24px; }
+    .mini-card { padding: 26px; border: 2px solid var(--ink); background: var(--paper); }
+    .mini-card:nth-child(2) { background: var(--ink); color: var(--secondary); }
+    .mini-card .tag { font: 700 10px var(--display); letter-spacing: .12em; text-transform: uppercase; color: var(--primary); }
+    .mini-card h4 { margin: 18px 0 8px; font: 700 24px/1 var(--display); }
+    .mini-card p { margin: 0; font-size: 13px; color: var(--muted); }
+    .mini-card:nth-child(2) p { color: color-mix(in srgb, var(--secondary) 65%, transparent); }
+
+    .quote { text-align: center; background: var(--primary); border-block: 2px solid var(--ink); padding: 98px 24px; }
+    .quote blockquote { max-width: 1040px; margin: 0 auto; font: 700 clamp(34px, 5.2vw, 70px)/1 var(--display); letter-spacing: -.055em; }
+    .quote p { margin: 24px 0 0; font: 700 13px var(--display); text-transform: uppercase; letter-spacing: .12em; }
+
+    .footer { padding: 72px 0 24px; background: var(--ink); color: var(--secondary); }
+    .footer-grid { display: grid; grid-template-columns: 1.35fr repeat(2, .65fr); gap: 56px; }
+    .footer .brand { font-size: clamp(42px, 6vw, 78px); }
+    .footer h4 { margin: 0 0 16px; font: 700 12px var(--display); text-transform: uppercase; letter-spacing: .13em; color: var(--highlight); }
+    .footer a { display: block; margin: 8px 0; text-decoration: none; }
+    .footer-bottom { display: flex; justify-content: space-between; gap: 24px; margin-top: 64px; padding-top: 18px; border-top: 1px solid color-mix(in srgb, var(--secondary) 20%, transparent); font-size: 12px; }
+
+    .switcher {
+      position: fixed;
+      z-index: 90;
+      right: 18px;
+      top: 96px;
+      width: 258px;
+      background: var(--paper);
+      border: 2px solid var(--ink);
+      box-shadow: var(--shadow);
+      transition: transform .25s ease;
+    }
+    .switcher.is-collapsed { transform: translateX(calc(100% + 40px)); }
+    .switcher-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 48px; padding: 10px 12px; border-bottom: 2px solid var(--ink); background: var(--ink); color: var(--secondary); }
+    .switcher-head strong { font: 700 11px var(--display); letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; }
+    .switch-toggle { border: 0; width: 28px; height: 28px; padding: 0; background: var(--highlight); color: var(--ink); cursor: pointer; font-weight: 800; }
+    .switcher-body { padding: 14px; }
+    .control-label { margin: 0 0 8px; font: 700 10px var(--display); letter-spacing: .12em; text-transform: uppercase; }
+    .choice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-bottom: 16px; }
+    .choice { min-height: 38px; border: 1px solid var(--ink); background: var(--secondary); color: var(--ink); padding: 7px; cursor: pointer; font-size: 11px; font-weight: 700; text-align: left; }
+    .choice[aria-pressed="true"] { background: var(--primary); box-shadow: 2px 2px 0 var(--ink); }
+    .palette-list { display: grid; gap: 7px; }
+    .palette-choice { display: grid; grid-template-columns: 58px 1fr; align-items: center; gap: 8px; min-height: 37px; border: 1px solid var(--ink); background: white; color: #222; padding: 5px; cursor: pointer; text-align: left; font-size: 11px; font-weight: 700; }
+    .palette-choice[aria-pressed="true"] { box-shadow: 2px 2px 0 var(--ink); }
+    .swatches { display: flex; height: 25px; overflow: hidden; }
+    .swatches i { flex: 1; }
+    .carnival-swatch i:nth-child(1) { background:#ff6f61; } .carnival-swatch i:nth-child(2) { background:#2d9cdb; } .carnival-swatch i:nth-child(3) { background:#f9c74f; }
+    .mango-swatch i:nth-child(1) { background:#ff6b35; } .mango-swatch i:nth-child(2) { background:#1fa6a6; } .mango-swatch i:nth-child(3) { background:#ffb703; }
+    .india-swatch i:nth-child(1) { background:#f45b69; } .india-swatch i:nth-child(2) { background:#4361ee; } .india-swatch i:nth-child(3) { background:#f4a261; }
+    .nimbu-swatch i:nth-child(1) { background:#c9f227; } .nimbu-swatch i:nth-child(2) { background:#6c4cff; } .nimbu-swatch i:nth-child(3) { background:#16c7a1; }
+    .rosechai-swatch i:nth-child(1) { background:#e95664; } .rosechai-swatch i:nth-child(2) { background:#7557d9; } .rosechai-swatch i:nth-child(3) { background:#e3a23b; }
+    .monsoon-swatch i:nth-child(1) { background:#ff8a4c; } .monsoon-swatch i:nth-child(2) { background:#50c9e8; } .monsoon-swatch i:nth-child(3) { background:#f4d35e; }
+    .current-note { padding-top: 10px; border-top: 1px solid var(--line); font-size: 10px; color: var(--muted); }
+    .switcher-reopen { position: fixed; z-index: 89; right: 0; top: 120px; min-height: 46px; padding: 11px 13px; border: 2px solid var(--ink); border-right: 0; background: var(--highlight); color: var(--ink); font: 700 11px var(--display); letter-spacing: .08em; text-transform: uppercase; cursor: pointer; writing-mode: vertical-rl; transform: translateX(110%); opacity: 0; pointer-events: none; transition: transform .22s ease, opacity .22s ease; }
+    .switcher.is-collapsed + .switcher-reopen { transform: translateX(0); opacity: 1; pointer-events: auto; }
+
+    dialog { width: min(570px, calc(100% - 32px)); border: 2px solid var(--ink); padding: 0; background: var(--paper); color: var(--ink); box-shadow: 10px 12px 0 var(--ink); }
+    dialog::backdrop { background: rgba(34,34,34,.68); backdrop-filter: blur(4px); }
+    .dialog-head { display: flex; justify-content: space-between; gap: 20px; padding: 22px 24px; border-bottom: 2px solid var(--ink); background: var(--primary); }
+    .dialog-head h2 { margin: 0; font: 700 29px/1 var(--display); letter-spacing: -.04em; }
+    .dialog-close { width: 34px; height: 34px; border: 2px solid var(--ink); background: var(--paper); cursor: pointer; font-weight: 800; }
+    .dialog-body { padding: 24px; }
+    .persona { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 18px; }
+    .persona button { min-height: 62px; border: 2px solid var(--ink); background: var(--secondary); cursor: pointer; font-weight: 700; }
+    .persona button[aria-pressed="true"] { background: var(--highlight); box-shadow: 3px 3px 0 var(--ink); }
+    .field { display: grid; gap: 6px; margin: 14px 0; }
+    .field label { font: 700 11px var(--display); text-transform: uppercase; letter-spacing: .1em; }
+    .field input { width: 100%; min-height: 48px; border: 2px solid var(--ink); background: white; padding: 10px 12px; color: #222; }
+    .success { display: none; padding: 44px 24px; text-align: center; }
+    .success h3 { margin: 0 0 12px; font: 700 34px/1 var(--display); }
+
+    /* The same content takes on four materially different page compositions. */
+    html[data-layout="noticeboard"] .hero-grid { grid-template-columns: .86fr 1.14fr; }
+    html[data-layout="noticeboard"] .hero h1 { font-size: clamp(50px, 6.3vw, 90px); }
+    html[data-layout="noticeboard"] .hero { background-image: radial-gradient(var(--line) 1.2px, transparent 1.2px); background-size: 18px 18px; }
+    html[data-layout="noticeboard"] .bridge-card, html[data-layout="noticeboard"] .mini-card { box-shadow: 5px 6px 0 var(--ink); transform: rotate(-.3deg); }
+    html[data-layout="noticeboard"] .bridge-card:last-child, html[data-layout="noticeboard"] .mini-card:nth-child(2) { transform: rotate(.4deg); }
+
+    html[data-layout="festival"] .hero { padding-top: 54px; }
+    html[data-layout="festival"] .hero-grid { grid-template-columns: 1fr; gap: 38px; }
+    html[data-layout="festival"] .hero-copy { text-align: center; }
+    html[data-layout="festival"] .hero h1 { max-width: 1150px; margin-inline: auto; font-size: clamp(58px, 9.4vw, 132px); }
+    html[data-layout="festival"] .hero-lede { margin-inline: auto; }
+    html[data-layout="festival"] .hero-actions, html[data-layout="festival"] .micro-proof { justify-content: center; }
+    html[data-layout="festival"] .stage { min-height: 460px; width: min(840px, 100%); margin: 0 auto; }
+    html[data-layout="festival"] .section-head { grid-template-columns: 1fr; text-align: center; }
+    html[data-layout="festival"] .section-intro { margin-inline: auto; }
+    html[data-layout="festival"] .bridge-grid { grid-template-columns: 1.15fr .85fr; transform: rotate(-.5deg); }
+    html[data-layout="festival"] .steps { transform: rotate(.35deg); }
+
+    html[data-layout="club"] body { background: var(--ink); }
+    html[data-layout="club"] .topbar { background: color-mix(in srgb, var(--ink) 94%, transparent); color: var(--secondary); border-color: rgba(255,255,255,.14); }
+    html[data-layout="club"] .brand span { color: var(--secondary); }
+    html[data-layout="club"] .hero { background: var(--secondary); margin: 20px; min-height: 700px; border: 2px solid var(--ink); }
+    html[data-layout="club"] .hero-grid { grid-template-columns: 1fr 1fr; gap: 38px; }
+    html[data-layout="club"] .hero h1 { font-size: clamp(52px, 6.4vw, 92px); }
+    html[data-layout="club"] .ticker { margin-inline: 20px; }
+    html[data-layout="club"] .section { margin-inline: 20px; }
+    html[data-layout="club"] .section:not(.section--paper) { color: var(--secondary); }
+    html[data-layout="club"] .section:not(.section--paper) .section-intro { color: color-mix(in srgb, var(--secondary) 65%, transparent); }
+    html[data-layout="club"] .section--paper { background: var(--secondary); }
+    html[data-layout="club"] .steps { border-color: var(--secondary); }
+    html[data-layout="club"] .step { background: var(--ink); border-color: var(--secondary); }
+    html[data-layout="club"] .step p { color: color-mix(in srgb, var(--secondary) 65%, transparent); }
+    html[data-layout="club"] .bridge-card { min-height: 500px; }
+    html[data-layout="club"] .footer { border-top: 1px solid rgba(255,255,255,.15); }
+
+    html[data-layout="zine"] .hero-grid { grid-template-columns: .9fr 1.1fr; }
+    html[data-layout="zine"] .hero-copy { order: 2; padding-left: 22px; border-left: 8px solid var(--primary); }
+    html[data-layout="zine"] .stage { order: 1; }
+    html[data-layout="zine"] .hero h1 { font-size: clamp(52px, 6.4vw, 94px); }
+    html[data-layout="zine"] .section-head { padding-bottom: 28px; border-bottom: 8px solid var(--ink); }
+    html[data-layout="zine"] .section h2 { text-transform: uppercase; }
+    html[data-layout="zine"] .bridge-card:first-child { transform: translateY(26px); }
+
+    html[data-layout="orbit"] .hero-grid { grid-template-columns: 1fr; gap: 46px; }
+    html[data-layout="orbit"] .hero-copy { text-align: center; }
+    html[data-layout="orbit"] .hero h1, html[data-layout="orbit"] .hero-lede { margin-inline: auto; }
+    html[data-layout="orbit"] .hero-actions, html[data-layout="orbit"] .micro-proof { justify-content: center; }
+    html[data-layout="orbit"] .stage { width: min(780px, 100%); min-height: 560px; margin: 0 auto; }
+    html[data-layout="orbit"] .section-head { grid-template-columns: 1fr; text-align: center; }
+    html[data-layout="orbit"] .section-intro { margin-inline: auto; }
+    html[data-layout="orbit"] .bridge-card { border-radius: 50% 50% 8px 8px; padding-top: 82px; text-align: center; }
+    html[data-layout="orbit"] .bridge-card h3, html[data-layout="orbit"] .bridge-card p { margin-inline: auto; }
+
+    @media (max-width: 980px) {
+      .navlinks a:not(.button) { display: none; }
+      .hero-grid, html[data-layout="noticeboard"] .hero-grid, html[data-layout="club"] .hero-grid, html[data-layout="zine"] .hero-grid { grid-template-columns: 1fr; }
+      .hero { padding-top: 64px; }
+      .hero-copy { text-align: center; }
+      .hero h1, .hero-lede { margin-inline: auto; }
+      .hero-actions, .micro-proof { justify-content: center; }
+      .stage { width: min(590px, 100%); margin: 0 auto; }
+      html[data-layout="zine"] .hero-copy { order: 1; padding-left: 0; border-left: 0; }
+      html[data-layout="zine"] .stage { order: 2; }
+      .section-head { grid-template-columns: 1fr; gap: 20px; }
+      .opportunities { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid > :first-child { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 700px) {
+      .shell { width: min(100% - 32px, var(--max)); }
+      .nav { min-height: 66px; }
+      .navlinks .button { min-height: 40px; padding: 9px 12px; font-size: 11px; }
+      .hero { min-height: 0; padding: 52px 0 42px; }
+      .hero h1 { font-size: clamp(49px, 15vw, 74px); }
+      .hero-lede { margin-block: 20px 24px; }
+      .hero-actions .button { width: 100%; }
+      .stage { min-height: 430px; margin-top: 16px; }
+      .polaroid { width: 61%; }
+      .sticker-round { width: 84px; }
+      .board { padding: 14px; border-width: 8px; gap: 10px; }
+      .pin-card { padding: 15px; min-height: 140px; }
+      .pin-card strong { font-size: 18px; }
+      .festival-art .poster-copy { font-size: 48px; }
+      .member-card { height: 320px; }
+      .stage-zine .zine-cover { height: calc(100% - 118px); }
+      .zine-rankings { right: 0; width: 94%; padding: 14px; }
+      .section { padding: 74px 0; }
+      .section h2 { font-size: clamp(39px, 12vw, 58px); }
+      .bridge-grid, html[data-layout="festival"] .bridge-grid { grid-template-columns: 1fr; transform: none; }
+      .bridge-card { min-height: 350px; padding: 26px; }
+      .steps { grid-template-columns: 1fr; }
+      .step { min-height: 0; border-right: 0; border-bottom: 2px solid var(--ink); }
+      .step:last-child { border-bottom: 0; }
+      .step::before { margin-bottom: 30px; }
+      html[data-layout="club"] .steps { border-color: var(--secondary); }
+      html[data-layout="club"] .step { border-color: var(--secondary); }
+      .opportunity-main { min-height: 390px; padding: 26px; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-grid > :first-child { grid-column: auto; }
+      .footer-bottom { flex-direction: column; }
+      .switcher { top: auto; bottom: 12px; right: 12px; left: 12px; width: auto; max-height: 70vh; overflow: auto; }
+      .switcher.is-collapsed { transform: translateY(calc(100% + 24px)); }
+      .switcher-reopen { top: auto; right: 12px; bottom: 12px; border-right: 2px solid var(--ink); writing-mode: horizontal-tb; transform: translateY(80px); }
+      .switcher.is-collapsed + .switcher-reopen { transform: translateY(0); }
+      .choice-grid { grid-template-columns: repeat(3, 1fr); }
+      .choice { text-align: center; font-size: 9px; padding: 5px; }
+      .palette-list { grid-template-columns: repeat(3, 1fr); }
+      .palette-choice { grid-template-columns: 1fr; }
+      .palette-choice span:last-child { display: none; }
+      html[data-layout="club"] .hero, html[data-layout="club"] .section, html[data-layout="club"] .ticker { margin-inline: 8px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+  </style>
 </head>
-<body class="bg-background text-on-background selection:bg-primary/20 selection:text-primary font-body-md antialiased">
-    <!-- TopNavBar -->
-    <nav class="fixed top-0 w-full bg-background/90 backdrop-blur-md z-50 border-b border-outline/50 shadow-sm duration-300 ease-in-out">
-        <div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 max-w-container-max mx-auto">
-            <a href="/" class="flex items-center">
-                <img src="images/Light%20Thin%20Logo.png" alt="Uncreator.Club Logo" class="h-8 md:h-10 w-auto">
-            </a>
-            <div class="hidden md:flex gap-8 items-center">
-                <a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md font-medium" href="#">For Brands</a>
-                <a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md font-medium" href="#">For Creators</a>
-                <a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md font-medium" href="#">Insights</a>
-                <a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md font-medium" href="#">Case Studies</a>
-            </div>
-            <div class="flex items-center gap-4">
-                <button class="hidden sm:block text-on-surface-variant hover:text-primary transition-all font-body-md text-body-md font-medium">Login</button>
-                <button onclick="openSignupModal('select')" class="bg-primary text-on-primary px-6 py-2 rounded-lg font-body-md text-body-md font-semibold hover:opacity-90 transition-all shadow-editorial">Join Now</button>
-            </div>
-        </div>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="topbar">
+    <nav class="nav shell" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="Uncreator.club home">uncreator<span>.club</span></a>
+      <div class="navlinks">
+        <a href="#why">Why us</a>
+        <a href="#how">How it works</a>
+        <a href="#opportunities">Opportunities</a>
+        <button class="button js-open-dialog" type="button">Get in the room <span class="arrow">↗</span></button>
+      </div>
     </nav>
+  </header>
 
-    <!-- Hero Section -->
-    <section class="relative pt-32 pb-20 md:pt-48 md:pb-40 overflow-hidden min-h-screen flex items-center bg-background">
-        <div class="relative z-10 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop w-full text-center lg:text-left">
-            <div class="grid lg:grid-cols-12 gap-12 items-center">
-                <div class="space-y-8 lg:col-span-7">
-                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary-fixed">
-                        <span class="font-label-caps text-label-caps text-primary uppercase">Modern Brand Building</span>
-                        <div class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></div>
-                    </div>
-                    <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg leading-tight">
-                        Track what customers are saying.<br>
-                        <span class="text-gradient-warm italic">Shape what they say next.</span>
-                    </h1>
-                    <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mx-auto lg:mx-0">
-                        We build the strategic bridge between consumer perception, creator influence, and modern brand growth. Designed for founders, built by creators, backable by investors.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                        <button onclick="openSignupModal('brand')" class="bg-primary text-on-primary px-8 py-4 rounded-lg font-body-md text-body-md font-semibold hover:opacity-90 transition-all glow-warm transform hover:scale-[1.02] shadow-editorial">
-                            Book a Discovery Session
-                        </button>
-                        <button onclick="openSignupModal('creator')" class="border border-secondary text-secondary px-8 py-4 rounded-lg font-body-md text-body-md font-semibold hover:bg-secondary-fixed transition-all glow-sage transform hover:scale-[1.02]">
-                            Join the Creator Circle
-                        </button>
-                    </div>
-                </div>
-                <div class="hidden lg:grid grid-cols-2 gap-4 lg:col-span-5">
-                    <div class="editorial-card p-8 transform translate-y-8 space-y-4">
-                        <div class="font-label-caps text-label-caps text-secondary uppercase">Consumer Signals Tracked</div>
-                        <div class="font-display-lg text-headline-lg">5,000+</div>
-                        <div class="h-0.5 w-full bg-outline rounded-full overflow-hidden">
-                            <div class="h-full bg-gradient-to-r from-primary to-tertiary w-3/4"></div>
-                        </div>
-                    </div>
-                    <div class="editorial-card p-8 space-y-4">
-                        <div class="font-label-caps text-label-caps text-tertiary uppercase">Creators Activated</div>
-                        <div class="font-display-lg text-headline-lg">250+</div>
-                        <div class="flex -space-x-2">
-                            <div class="w-8 h-8 rounded-full border-2 border-background bg-surface-container-high flex items-center justify-center text-[10px] font-bold text-on-surface-variant font-label-caps">C1</div>
-                            <div class="w-8 h-8 rounded-full border-2 border-background bg-surface-container-high flex items-center justify-center text-[10px] font-bold text-on-surface-variant font-label-caps">C2</div>
-                            <div class="w-8 h-8 rounded-full border-2 border-background bg-surface-container-high flex items-center justify-center text-[10px] font-bold text-on-surface-variant font-label-caps">C3</div>
-                            <div class="w-8 h-8 rounded-full border-2 border-background flex items-center justify-center bg-primary text-on-primary text-[10px] font-bold font-label-caps">+250</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-grid shell">
+        <div class="hero-copy">
+          <p class="eyebrow">Brands × creators × community</p>
+          <h1>You’re finally <span class="room">in the room.</span></h1>
+          <p class="hero-lede">Many creators feel overlooked. Many brands feel priced out. Uncreator.club is where they finally find each other — and build work that moves culture.</p>
+          <div class="hero-actions">
+            <button class="button js-open-dialog" type="button">Join the club <span class="arrow">↗</span></button>
+            <a class="button button--quiet" href="#how">See how it works</a>
+          </div>
+          <div class="micro-proof">
+            <div class="faces" aria-hidden="true"><span class="face">AK</span><span class="face">RM</span><span class="face">NS</span></div>
+            <span>Built for India’s next wave of creators & brands</span>
+          </div>
         </div>
+
+        <div class="stage" aria-label="Visual expression of the selected layout">
+          <div class="stage-panel stage-scrapbook" aria-hidden="true">
+            <span class="tape t1"></span><span class="tape t2"></span>
+            <div class="polaroid one" data-label="found the brief ✦"><div class="photo"></div></div>
+            <div class="polaroid two" data-label="made it ours"><div class="photo alt"></div></div>
+            <div class="sticker sticker-round">create<br>together</div>
+            <div class="sticker sticker-note">OPEN CALL →</div>
+          </div>
+          <div class="stage-panel stage-noticeboard" aria-hidden="true">
+            <div class="board">
+              <article class="pin-card"><i class="pin"></i><small>Open call · Beauty</small><strong>Five creators wanted for a skin-first launch.</strong><p>Paid collaboration · Mumbai + remote</p></article>
+              <article class="pin-card"><i class="pin"></i><small>Club note</small><strong>Good ideas deserve better rooms.</strong><p class="scribble">You’re invited ✦</p></article>
+              <article class="pin-card"><i class="pin"></i><small>Creator shoutout</small><strong>“The first brief where my perspective was the strategy.”</strong><p>— Rhea, culture creator</p></article>
+            </div>
+          </div>
+          <div class="stage-panel stage-festival" aria-hidden="true">
+            <div class="festival-art"><span class="sun"></span><span class="wave"></span><div class="poster-copy">Make<br>culture<br>move.</div><span class="spark">✦</span><span class="date">CREATOR SOCIAL · 08.08</span></div>
+          </div>
+          <div class="stage-panel stage-club" aria-hidden="true">
+            <div class="member-card"><div class="card-top"><span>Uncreator.club</span><span>Founding member</span></div><div class="badge">01</div><h3>Naya Sharma<br><small>Culture maker · Mumbai</small></h3></div>
+            <div class="rankings"><p class="eyebrow">This week in the club</p><div class="ranking"><span>01</span><span>Food storytellers</span><span>+42%</span></div><div class="ranking"><span>02</span><span>Micro beauty voices</span><span>+31%</span></div><div class="ranking"><span>03</span><span>Homegrown fashion</span><span>+24%</span></div></div>
+          </div>
+          <div class="stage-panel stage-zine" aria-hidden="true">
+            <div class="zine-cover"><div class="zine-masthead">NEW VOICES</div><div class="zine-portrait"></div><span class="zine-side">Culture makers annual</span><span class="zine-burst">THE ROOM<br>IS OPEN ↗</span></div>
+            <div class="rankings zine-rankings"><p class="eyebrow">This week in the club</p><div class="ranking"><span>01</span><span>Food storytellers</span><span>+42%</span></div><div class="ranking"><span>02</span><span>Micro beauty voices</span><span>+31%</span></div><div class="ranking"><span>03</span><span>Homegrown fashion</span><span>+24%</span></div></div>
+          </div>
+          <div class="stage-panel stage-orbit" aria-hidden="true">
+            <div class="orbit-map"><span class="orbit-ring r1"></span><span class="orbit-ring r2"></span><span class="orbit-ring r3"></span><span class="orbit-core">UC</span><span class="orbit-node n1">CREATOR<br>MUMBAI</span><span class="orbit-node n2">BRAND<br>BENGALURU</span><span class="orbit-node n3">STORY<br>JAIPUR</span><span class="orbit-node n4">COMMUNITY<br>EVERYWHERE</span><span class="orbit-caption">A living network for better creative work</span></div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Creator Value Prop -->
-    <section class="py-24 bg-surface-container-low">
-        <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
-            <div class="flex flex-col md:flex-row gap-12 items-center">
-                <div class="w-full md:w-1/2 order-2 md:order-1">
-                    <div class="relative group">
-                        <div class="absolute -inset-1 bg-gradient-to-r from-primary to-tertiary rounded-lg blur opacity-10 group-hover:opacity-20 transition duration-1000"></div>
-                        <div class="relative bg-surface rounded-lg aspect-[4/5] overflow-hidden border border-outline shadow-editorial">
-                            <img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="A content creator in a clean, modern natural-light studio looking at analytics graphs." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjmlIClA-iEyOd6efSUZVuIS_ge-BdcxhR2s7gy8bkjvN64L2FW-zOXiQ5H-c0CnPgyl_ypBdJtTO8tDU_kO8Q6FHE-1iKsKZSEM9IxjkK7-u2waLxX92MExnZuk62JeRp6K-lvVDwXiPy9Y2kpHs35sgjz6q8jj_l5Y7ani_2J3ykhHGm-inqyN8TPchZfMNqWNGvKmZqsiq2i48MzC-eSiNC45BZV_EQbdxy6API623qeYcvnb74g2d6dio6BrDIhspw-sVzcStp">
-                        </div>
-                    </div>
-                </div>
-                <div class="w-full md:w-1/2 order-1 md:order-2 space-y-8">
-                    <div class="font-label-caps text-label-caps text-primary">FOR CREATORS</div>
-                    <h2 class="font-display-lg text-headline-lg-mobile md:text-headline-lg leading-tight">
-                        Track what’s trending with brand campaigns. <br>
-                        <span class="italic text-primary">Shape how to place yourself there.</span>
-                    </h2>
-                    <div class="space-y-4">
-                        <p class="font-body-lg text-body-lg text-on-surface font-semibold">
-                            Creators are the ultimate interpreters of modern culture.
-                        </p>
-                        <p class="font-body-md text-body-md text-on-surface-variant">
-                            We don't treat you as a digital billboard. We collaborate with you to guide the perception of emerging brands, test early prototypes, and secure long-term equity and campaign partnerships.
-                        </p>
-                    </div>
-                    <ul class="space-y-4">
-                        <li class="flex items-center gap-4 font-body-md text-body-md">
-                            <span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-                            Access to premium early-stage brands
-                        </li>
-                        <li class="flex items-center gap-4 font-body-md text-body-md">
-                            <span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-                            Direct influence on brand product decisions
-                        </li>
-                        <li class="flex items-center gap-4 font-body-md text-body-md">
-                            <span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-                            Sustainable long-term performance equity partnerships
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Brand Value Prop -->
-    <section class="py-24 bg-background">
-        <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
-            <div class="flex flex-col md:flex-row gap-12 items-center">
-                <div class="w-full md:w-1/2 space-y-8">
-                    <div class="font-label-caps text-label-caps text-secondary">FOR BRANDS</div>
-                    <h2 class="font-display-lg text-headline-lg-mobile md:text-headline-lg leading-tight">
-                        The bridge between consumer perception, <br>
-                        <span class="italic text-secondary">creator influence, and modern brand growth.</span>
-                    </h2>
-                    <div class="space-y-4">
-                        <p class="font-body-lg text-body-lg text-on-surface font-semibold">
-                            We solve the perception gap.
-                        </p>
-                        <p class="font-body-md text-body-md text-on-surface-variant">
-                            Most brands fail to align what they think they are saying with what customers are actually experiencing. Uncreator.club conducts deep sentiment audits and partners you with creators who can shape real narratives.
-                        </p>
-                    </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="p-6 editorial-card">
-                            <div class="font-label-caps text-label-caps text-secondary mb-2">Perceptions Decoded</div>
-                            <div class="font-display-lg text-headline-md">5,000+</div>
-                        </div>
-                        <div class="p-6 editorial-card">
-                            <div class="font-label-caps text-label-caps text-tertiary mb-2">Creator Sentiment Audits</div>
-                            <div class="font-display-lg text-headline-md">1,000+</div>
-                        </div>
-                    </div>
-                    <button onclick="openSignupModal('brand')" class="bg-secondary text-on-secondary px-8 py-4 rounded-lg font-body-md text-body-md font-semibold hover:opacity-90 transition-all shadow-editorial">
-                        Discover Brand Perception Gaps
-                    </button>
-                </div>
-                <div class="w-full md:w-1/2">
-                    <div class="editorial-card p-1">
-                        <img class="w-full h-full rounded-sm object-cover" data-alt="Corporate analytics board showing campaign conversion and sentiment charts." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnx9-SKfxxFWEGognMP6djcjQCa-ab6OPRHTCvbEA93AIPJRd1hyFan95XlRHKInxbHGTZb_gpeZYv1eqr9pW-NFXoZ7AbTpPGkn0rxTTyS-12z_sjtbmIbtRMjMcNxuJdqINTwhcIk_blJu6BJ-GSRQHOYk_OPUPDUi6MiZ0wIFObF3wjK5zUky19I0hak7ul8qFv1_5QxAi2EdvD8s8jPYd89H6kFxz1E62wRJouFWniOqzD1taXjKS8OjsEFWyzsuSazGotaE97">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- The Moat Section -->
-    <section class="py-24 bg-surface-container-lowest border-y border-outline/40">
-        <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
-            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-                <div class="font-label-caps text-label-caps text-primary uppercase">Our Strategic Edge</div>
-                <h2 class="font-display-lg text-headline-lg-mobile md:text-headline-lg">How We Build Category-Defining Brands</h2>
-                <p class="font-body-md text-body-md text-on-surface-variant">Influencer platforms deal in vanity metrics. We build on culture, perception, and community commerce.</p>
-            </div>
-            
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="p-8 editorial-card space-y-6">
-                    <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                        <span class="font-display-lg text-headline-md text-primary font-bold">1</span>
-                    </div>
-                    <h3 class="font-display-lg text-headline-md italic text-on-background">We understand culture.</h3>
-                    <p class="font-body-md text-body-md text-on-surface-variant">We align brand narratives with actual consumer culture shifts, making sure your campaigns resonate deeply instead of feeling artificial.</p>
-                </div>
-                
-                <div class="p-8 editorial-card space-y-6">
-                    <div class="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center">
-                        <span class="font-display-lg text-headline-md text-secondary font-bold">2</span>
-                    </div>
-                    <h3 class="font-display-lg text-headline-md italic text-on-background">We understand consumers.</h3>
-                    <p class="font-body-md text-body-md text-on-surface-variant">We track and decode the exact sentiment gaps that separate what your brand claims from what customers actually say.</p>
-                </div>
-                
-                <div class="p-8 editorial-card space-y-6">
-                    <div class="w-12 h-12 rounded-lg bg-tertiary/10 flex items-center justify-center">
-                        <span class="font-display-lg text-headline-md text-tertiary font-bold">3</span>
-                    </div>
-                    <h3 class="font-display-lg text-headline-md italic text-on-background">We understand brand perception.</h3>
-                    <p class="font-body-md text-body-md text-on-surface-variant">Our strategic audits guide creator collaborations to consciously build, repair, and scale long-term market authority.</p>
-                </div>
-                
-                <div class="p-8 editorial-card space-y-6">
-                    <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                        <span class="font-display-lg text-headline-md text-primary font-bold">4</span>
-                    </div>
-                    <h3 class="font-display-lg text-headline-md italic text-on-background">We understand community.</h3>
-                    <p class="font-body-md text-body-md text-on-surface-variant">We activate sustainable peer-to-peer commerce channels using trusted voices, turning attention into long-term conversion.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Bento Talent Showcase Grid -->
-    <section class="py-24 bg-surface-container-low overflow-hidden">
-        <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
-            <div class="text-center mb-16 space-y-4">
-                <h2 class="font-display-lg text-headline-lg-mobile md:text-headline-lg">Bridging Culture and Commerce</h2>
-                <p class="font-body-md text-body-md text-on-surface-variant">Working with founders who believe that brand perception is the ultimate growth driver.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-6 h-auto md:h-[600px]">
-                <div class="md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-lg border border-outline shadow-editorial">
-                    <img class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="High-fashion modern portrait of a digital creator native." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrB8rprWagfKYd_jvjEmVLOv92sf8Ub5ma8Jfk8hjhQbgt3AW4FoLEDFy3zCEDgWgiSpYtlL-QlyNdjFJY_QetJP2FnLN1I4DZucFhveeFPkHw7Gx95LPyhveSAe9v9-JfpmTjn6j1IZZXg_Q-bZf_rgSd2acHkFt9JwldmIVjuxxVX0n8VzLaQxDSevVH_7Gtt5MIGNvihnvnuELJGUJldqN6JjsBXkXB2KZYAbvkB_BFFZtZ93UIQUpGZmtqE7TITRZEUOz96Oa2">
-                    <div class="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-80"></div>
-                    <div class="absolute bottom-8 left-8">
-                        <div class="font-display-lg text-headline-lg italic text-on-background">@ALEX_CORE</div>
-                        <div class="font-label-caps text-label-caps text-primary uppercase">Lifestyle &amp; Tech • 4.2M Follows</div>
-                    </div>
-                </div>
-                
-                <div class="md:col-span-2 md:row-span-1 editorial-card p-8 flex items-center justify-center gap-6 md:gap-8 flex-wrap">
-                    <span class="font-label-caps text-label-caps hover:text-primary transition-colors uppercase tracking-wider text-on-surface-variant">Beauty</span>
-                    <span class="font-label-caps text-label-caps hover:text-primary transition-colors uppercase tracking-wider text-on-surface-variant">Wellness</span>
-                    <span class="font-label-caps text-label-caps hover:text-primary transition-colors uppercase tracking-wider text-on-surface-variant">Fashion</span>
-                    <span class="font-label-caps text-label-caps hover:text-primary transition-colors uppercase tracking-wider text-on-surface-variant">Food &amp; Beverage</span>
-                    <span class="font-label-caps text-label-caps hover:text-primary transition-colors uppercase tracking-wider text-on-surface-variant">Lifestyle</span>
-                    <span class="font-label-caps text-label-caps hover:text-primary transition-colors uppercase tracking-wider text-on-surface-variant">Homegrown Brands</span>
-                </div>
-                
-                <div class="md:col-span-1 md:row-span-1 editorial-card p-8 flex flex-col justify-end">
-                    <div class="font-display-lg text-headline-lg text-primary">98%</div>
-                    <div class="font-label-caps text-label-caps opacity-60">Retention Rate</div>
-                </div>
-                
-                <div class="md:col-span-1 md:row-span-1 bg-secondary text-on-secondary rounded-lg p-8 flex flex-col justify-end shadow-editorial">
-                    <div class="font-display-lg text-headline-lg text-on-secondary">500k+</div>
-                    <div class="font-label-caps text-label-caps opacity-80">Monthly Conversions</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Final CTA -->
-    <section class="py-32 bg-background relative overflow-hidden">
-        <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop text-center relative z-10">
-            <div class="max-w-3xl mx-auto space-y-12">
-                <h2 class="font-display-lg text-display-lg-mobile md:text-display-lg leading-tight">
-                    The Brands That Win Tomorrow <br>
-                    <span class="text-primary italic">Understand Their Customers Today.</span>
-                </h2>
-                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mx-auto">Discover the perception gaps shaping your growth and learn how creator narratives can build sustainable consumer trust.</p>
-                <div class="flex flex-col sm:flex-row gap-6 justify-center">
-                    <button onclick="openSignupModal('brand')" class="bg-primary text-on-primary px-12 py-6 rounded-lg font-body-md text-body-md font-semibold hover:opacity-95 transition-all glow-warm shadow-editorial">
-                        Book A Brand Discovery Call
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="w-full py-12 bg-surface-container-low border-t border-outline/50">
-        <div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop gap-base max-w-container-max mx-auto">
-            <a href="/" class="flex items-center">
-                <img src="images/Light%20Thin%20Logo.png" alt="Uncreator.Club Logo" class="h-8 md:h-10 w-auto">
-            </a>
-            <div class="flex flex-wrap justify-center gap-8 font-label-caps text-label-caps text-on-surface-variant">
-                <a class="hover:text-primary transition-colors" href="#">Terms</a>
-                <a class="hover:text-primary transition-colors" href="#">Privacy</a>
-                <a class="hover:text-primary transition-colors" href="#">Press</a>
-                <a class="hover:text-primary transition-colors" href="#">Contact</a>
-            </div>
-            <div class="font-label-caps text-label-caps text-on-surface-variant text-center md:text-right">© 2024 Uncreator.Club. ALL RIGHTS RESERVED.</div>
-        </div>
-    </footer>
-
-    <!-- Sign Up Modal Skeleton -->
-    <div id="signup-modal" class="modal-backdrop">
-        <div class="modal-container p-8 relative">
-            <!-- Close Button -->
-            <button onclick="closeModal()" class="absolute top-6 right-6 text-on-surface-variant hover:text-primary transition-all">
-                <span class="material-symbols-outlined text-[24px]">close</span>
-            </button>
-            <!-- Progress Bar -->
-            <div class="w-full bg-outline/30 h-0.5 mb-8 overflow-hidden">
-                <div id="modal-progress" class="bg-primary h-full transition-all duration-300" style="width: 0%;"></div>
-            </div>
-            <!-- Step Indicator -->
-            <div id="modal-step-indicator" class="font-label-caps text-label-caps text-secondary mb-2 uppercase">Step 1 of 6</div>
-            
-            <!-- Dynamic Content Area -->
-            <div id="modal-content" class="min-h-[300px]">
-                <!-- Steps will be injected dynamically -->
-            </div>
-
-            <!-- Footer Navigation -->
-            <div class="flex justify-between items-center mt-8 pt-4 border-t border-outline/30">
-                <button id="modal-back-btn" onclick="prevStep()" class="text-on-surface-variant hover:text-primary font-body-md text-body-md font-semibold transition-all flex items-center gap-1">
-                    <span class="material-symbols-outlined text-[18px]">arrow_back</span> Back
-                </button>
-                <button id="modal-next-btn" onclick="nextStep()" class="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-body-md text-body-md font-semibold hover:opacity-90 transition-all flex items-center gap-1 shadow-editorial">
-                    Continue <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-                </button>
-            </div>
-        </div>
+    <div class="ticker" aria-label="What the community makes possible">
+      <div class="ticker-track"><span>Better briefs ✦</span><span>Real creator voice ✦</span><span>Culture-led growth ✦</span><span>Community, not inventory ✦</span><span>Better briefs ✦</span><span>Real creator voice ✦</span><span>Culture-led growth ✦</span><span>Community, not inventory ✦</span></div>
     </div>
 
-    <!-- Custom JS -->
-    <script src="js/script.js" defer></script>
+    <section class="section section--paper" id="why">
+      <div class="shell">
+        <div class="section-head"><div><p class="eyebrow">The reason we exist</p><h2>Built for both sides of the table.</h2></div><p class="section-intro">We replace transactional creator marketing with a shared creative room — one where cultural instinct, clear strategy and fair opportunity meet.</p></div>
+        <div class="bridge-grid">
+          <article class="bridge-card"><span class="num">FOR CREATORS / 01</span><h3>Your perspective is the product.</h3><p>Find thoughtful briefs, meet brands early and turn your cultural intelligence into meaningful, paid work.</p><span class="big-letter">C</span></article>
+          <article class="bridge-card"><span class="num">FOR BRANDS / 02</span><h3>Build with culture, not around it.</h3><p>Hear what real customers are saying, collaborate with the right voices and create campaigns people actually care about.</p><span class="big-letter">B</span></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="how">
+      <div class="shell">
+        <div class="section-head"><div><p class="eyebrow">Simple by design</p><h2>From “hello” to “we made this.”</h2></div><p class="section-intro">No endless marketplace scroll. We learn what you care about, create a considered match and stay close while the work takes shape.</p></div>
+        <div class="steps">
+          <article class="step"><h3>Tell us what matters</h3><p>Creators share their point of view. Brands share the growth or perception gap they need to solve.</p></article>
+          <article class="step"><h3>Meet your people</h3><p>We curate fit around culture, chemistry and ambition — not only reach or follower counts.</p></article>
+          <article class="step"><h3>Make work that travels</h3><p>Build the idea together, launch with clarity and learn from the community response.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--paper" id="opportunities">
+      <div class="shell">
+        <div class="section-head"><div><p class="eyebrow">Happening in the club</p><h2>Opportunity, with a pulse.</h2></div><p class="section-intro">The community comes alive through open calls, creator rooms, brand labs and small events built around useful conversations.</p></div>
+        <div class="opportunities">
+          <article class="opportunity-main"><div><p class="eyebrow">Next up · Community room</p><h3>What will India’s next creator economy value?</h3></div><div><p>A candid evening with independent creators, emerging brand founders and people shaping what comes next.</p><button class="button button--ink js-open-dialog" type="button">Ask for an invite ↗</button></div></article>
+          <div class="opportunity-stack"><article class="mini-card"><span class="tag">Open call · 12 spots</span><h4>Food stories without the clichés</h4><p>For regional food creators and a new pantry brand.</p></article><article class="mini-card"><span class="tag">Brand lab · August</span><h4>From customer signal to campaign</h4><p>A working session for early-stage consumer founders.</p></article></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="quote" aria-label="Community testimonial"><blockquote>“I didn’t feel like media inventory. I felt like the person with the missing piece.”</blockquote><p>Creator, founding circle</p></section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell">
+      <div class="footer-grid"><div><a class="brand" href="#top">uncreator<span>.club</span></a><p>For the people making culture<br>and the brands ready to listen.</p></div><div><h4>Explore</h4><a href="#why">Why us</a><a href="#how">How it works</a><a href="#opportunities">Opportunities</a></div><div><h4>Say hello</h4><a href="mailto:hello@uncreator.club">hello@uncreator.club</a><a href="#">Instagram</a><a href="#">LinkedIn</a></div></div>
+      <div class="footer-bottom"><span>© 2026 Uncreator.club</span><span>Made for India’s new creative economy.</span></div>
+    </div>
+  </footer>
+
+  <dialog id="join-dialog" aria-labelledby="dialog-title">
+    <div class="dialog-content">
+      <div class="dialog-head"><h2 id="dialog-title">Come into the room.</h2><button class="dialog-close" type="button" aria-label="Close">×</button></div>
+      <form class="dialog-body" id="interest-form">
+        <p>Start by telling us which side of the table you’re joining from.</p>
+        <div class="persona" role="group" aria-label="Choose your path"><button type="button" data-persona="Creator" aria-pressed="true">I’m a creator</button><button type="button" data-persona="Brand" aria-pressed="false">I’m a brand</button></div>
+        <input type="hidden" name="persona" value="Creator">
+        <div class="field"><label for="join-name">Your name</label><input id="join-name" name="name" autocomplete="name" required placeholder="What should we call you?"></div>
+        <div class="field"><label for="join-email">Email</label><input id="join-email" name="email" type="email" autocomplete="email" required placeholder="you@example.com"></div>
+        <button class="button" type="submit">Request an invite <span class="arrow">↗</span></button>
+      </form>
+      <div class="success" role="status"><p class="eyebrow">You’re on the list</p><h3>See you in the room.</h3><p>We’ll be in touch with the right next step.</p><button class="button dialog-done" type="button">Done</button></div>
+    </div>
+  </dialog>
+
+  <script>
+    (() => {
+      const dialog = document.querySelector('#join-dialog');
+      const form = document.querySelector('#interest-form');
+      const success = document.querySelector('.success');
+      const openDialog = () => {
+        form.style.display = '';
+        success.style.display = 'none';
+        dialog.showModal();
+      };
+
+      document.querySelectorAll('.js-open-dialog').forEach(button => button.addEventListener('click', openDialog));
+      document.querySelector('.dialog-close').addEventListener('click', () => dialog.close());
+      document.querySelector('.dialog-done').addEventListener('click', () => dialog.close());
+      dialog.addEventListener('click', event => {
+        if (event.target === dialog) dialog.close();
+      });
+
+      document.querySelectorAll('[data-persona]').forEach(button => button.addEventListener('click', () => {
+        document.querySelectorAll('[data-persona]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+        form.elements.persona.value = button.dataset.persona;
+      }));
+
+      form.addEventListener('submit', event => {
+        event.preventDefault();
+        if (!form.reportValidity()) return;
+        form.style.display = 'none';
+        success.style.display = 'block';
+      });
+    })();
+  </script>
 </body>
 </html>

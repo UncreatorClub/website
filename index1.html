@@ -208,6 +208,7 @@
     .ranking span:last-child { color: var(--accent); }
 
     .zine-cover { height: 100%; position: relative; overflow: hidden; background: var(--highlight); border: 3px solid var(--ink); box-shadow: var(--shadow); }
+    .stage-zine .zine-cover { height: calc(100% - 104px); }
     .zine-cover::before { content: "ISSUE 001"; position: absolute; left: 24px; top: 22px; z-index: 4; font: 800 11px var(--display); letter-spacing: .15em; }
     .zine-masthead { position: absolute; z-index: 3; left: -3px; right: -3px; top: 58px; padding: 7px 18px 12px; background: var(--ink); color: var(--secondary); font: 800 clamp(55px, 6vw, 84px)/.8 var(--display); letter-spacing: -.08em; white-space: nowrap; }
     .zine-portrait { position: absolute; left: 20%; right: 8%; top: 158px; bottom: 24px; background: var(--accent); border: 3px solid var(--ink); overflow: hidden; }
@@ -215,6 +216,7 @@
     .zine-portrait::after { content: ""; position: absolute; width: 82%; height: 58%; border-radius: 48% 48% 0 0; left: 9%; bottom: -13%; background: var(--secondary); border: 3px solid var(--ink); }
     .zine-side { position: absolute; z-index: 4; left: 22px; bottom: 29px; writing-mode: vertical-rl; transform: rotate(180deg); font: 800 13px var(--display); letter-spacing: .13em; text-transform: uppercase; }
     .zine-burst { position: absolute; z-index: 5; right: 5px; top: 138px; width: 108px; aspect-ratio: 1; display: grid; place-items: center; border-radius: 50%; background: var(--primary); border: 3px solid var(--ink); text-align: center; font: 800 12px/1.05 var(--display); transform: rotate(9deg); }
+    .zine-rankings { position: absolute; right: -8px; bottom: 0; width: 78%; margin: 0; transform: rotate(-1deg); }
 
     .orbit-map { height: 100%; position: relative; overflow: hidden; background: var(--ink); border: 3px solid var(--ink); box-shadow: var(--shadow); }
     .orbit-ring { position: absolute; left: 50%; top: 50%; border: 2px solid color-mix(in srgb, var(--secondary) 72%, transparent); border-radius: 50%; transform: translate(-50%, -50%); }
@@ -413,6 +415,8 @@
       .pin-card strong { font-size: 18px; }
       .festival-art .poster-copy { font-size: 48px; }
       .member-card { height: 320px; }
+      .stage-zine .zine-cover { height: calc(100% - 118px); }
+      .zine-rankings { right: 0; width: 94%; padding: 14px; }
       .section { padding: 74px 0; }
       .section h2 { font-size: clamp(39px, 12vw, 58px); }
       .bridge-grid, html[data-layout="festival"] .bridge-grid { grid-template-columns: 1fr; transform: none; }
@@ -529,6 +533,7 @@
           </div>
           <div class="stage-panel stage-zine" aria-hidden="true">
             <div class="zine-cover"><div class="zine-masthead">NEW VOICES</div><div class="zine-portrait"></div><span class="zine-side">Culture makers annual</span><span class="zine-burst">THE ROOM<br>IS OPEN ↗</span></div>
+            <div class="rankings zine-rankings"><p class="eyebrow">This week in the club</p><div class="ranking"><span>01</span><span>Food storytellers</span><span>+42%</span></div><div class="ranking"><span>02</span><span>Micro beauty voices</span><span>+31%</span></div><div class="ranking"><span>03</span><span>Homegrown fashion</span><span>+24%</span></div></div>
           </div>
           <div class="stage-panel stage-orbit" aria-hidden="true">
             <div class="orbit-map"><span class="orbit-ring r1"></span><span class="orbit-ring r2"></span><span class="orbit-ring r3"></span><span class="orbit-core">UC</span><span class="orbit-node n1">CREATOR<br>MUMBAI</span><span class="orbit-node n2">BRAND<br>BENGALURU</span><span class="orbit-node n3">STORY<br>JAIPUR</span><span class="orbit-node n4">COMMUNITY<br>EVERYWHERE</span><span class="orbit-caption">A living network for better creative work</span></div>
