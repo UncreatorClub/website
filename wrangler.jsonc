@@ -3,6 +3,10 @@
   "name": "uncreator-club-form",
   "main": "worker/src/index.js",
   "compatibility_date": "2026-07-17",
+  "keep_vars": true,
+  "secrets": {
+    "required": ["AUTOSEND_API_KEY"]
+  },
   "observability": {
     "enabled": true
   }
