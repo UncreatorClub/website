@@ -8,6 +8,9 @@ branch. The Worker expects one encrypted secret in Cloudflare:
 
 - `AUTOSEND_API_KEY` — the AutoSend project API key.
 
+Production deployments are triggered automatically whenever `worker/` changes
+on `main`; the Cloudflare dashboard is not the source of truth for Worker code.
+
 Local development:
 
 ```sh
