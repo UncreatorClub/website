@@ -29,3 +29,7 @@ yarn-debug.log*
 yarn-error.log*
 logs/
 *.log
+
+!.dev.vars.example
+.env*
+!.env.example
