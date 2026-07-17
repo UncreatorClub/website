@@ -167,6 +167,8 @@ export default {
       return json({ ok: false, error: 'Submissions are temporarily unavailable.' }, 503, origin);
     }
 
+    const listId = persona === 'Creator' ? env.AUTOSEND_CREATOR_LIST_ID : env.AUTOSEND_BRAND_LIST_ID;
+
     const autoSendResponse = await fetch('https://api.autosend.com/v1/contacts/email', {
       method: 'POST',
       headers: {
@@ -177,14 +179,31 @@ export default {
         email,
         firstName: name,
         customFields,
-        ...(persona === 'Creator' && env.AUTOSEND_CREATOR_LIST_ID ? { listIds: [env.AUTOSEND_CREATOR_LIST_ID] } : {}),
-        ...(persona === 'Brand' && env.AUTOSEND_BRAND_LIST_ID ? { listIds: [env.AUTOSEND_BRAND_LIST_ID] } : {}),
+        ...(listId ? { listIds: [listId] } : {}),
       }),
     });
 
     if (!autoSendResponse.ok) {
       console.error('AutoSend contact upsert failed', autoSendResponse.status);
       return json({ ok: false, error: 'We could not save your request. Please try again.' }, 502, origin);
+    }
+
+    // AutoSend's upsert endpoint accepts listIds, but an explicit list add makes
+    // membership reliable for both newly created and previously existing contacts.
+    if (listId) {
+      const listResponse = await fetch('https://api.autosend.com/v1/contact-lists/contacts/bulk-add', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${env.AUTOSEND_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ contactListId: listId, emails: [email] }),
+      });
+      const listResult = await listResponse.json().catch(() => ({}));
+      if (!listResponse.ok || !listResult.success || listResult.data?.errors?.length) {
+        console.error('AutoSend list membership failed', listResponse.status);
+        return json({ ok: false, error: 'We could not save your request. Please try again.' }, 502, origin);
+      }
     }
 
     return json({ ok: true }, 200, origin);
