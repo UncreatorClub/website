@@ -23,6 +23,32 @@ const json = (body, status = 200, origin = '') => {
 
 const clean = value => typeof value === 'string' ? value.trim() : '';
 const validEmail = email => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+const validUrl = value => {
+  try {
+    const url = new URL(value);
+    return ['http:', 'https:'].includes(url.protocol);
+  } catch {
+    return false;
+  }
+};
+const cleanArray = value => Array.isArray(value) ? value.map(clean).filter(Boolean) : [];
+const within = (value, allowed) => allowed.has(value);
+
+const REFERRAL_SOURCES = new Set(['Instagram', 'LinkedIn', 'Friend', 'Creator', 'Brand Founder', 'Event', 'Other']);
+const CREATOR_TOPICS = new Set(['Beauty', 'Wellness', 'Fashion', 'Food', 'Lifestyle', 'Parenting', 'Tech', 'Other']);
+const CREATOR_IDENTITIES = new Set([
+  'I love discovering products early',
+  'I enjoy reviewing products',
+  'I love sharing opinions',
+  'I build communities',
+  'I influence purchase decisions',
+  'A mix of all of these',
+]);
+const CREATOR_INTERESTS = new Set(['Brand collaborations', 'Product testing', 'Community events', 'Creator networking', 'Feedback circles', 'UGC opportunities']);
+const BRAND_CATEGORIES = new Set(['Beauty', 'Wellness', 'Fashion', 'Food & Beverage', 'Lifestyle', 'Home', 'Other']);
+const BRAND_CHALLENGES = new Set(['More awareness', 'More trust', 'More content', 'Product launch', 'Community building', 'Understanding customer perception', 'Creator partnerships', 'Other']);
+const BRAND_STAGES = new Set(["Customers don't know us", "Customers know us but don't trust us", "Customers like us but don't buy", "We don't know what customers think", "We're launching something new"]);
+const NEXT_STEPS = new Set(['Book Discovery Call', 'Join Waitlist']);
 
 export default {
   async fetch(request, env) {
@@ -56,7 +82,7 @@ export default {
 
     const contentType = request.headers.get('Content-Type') || '';
     const contentLength = Number(request.headers.get('Content-Length') || 0);
-    if (!contentType.includes('application/json') || contentLength > 8192) {
+    if (!contentType.includes('application/json') || contentLength > 65536) {
       return json({ ok: false, error: 'Invalid request.' }, 400, origin);
     }
 
@@ -69,16 +95,71 @@ export default {
 
     // Bots commonly fill visually hidden fields; successful-looking responses
     // prevent them from repeatedly probing the form.
-    if (clean(input.website)) {
+    if (clean(input.companyFax)) {
       return json({ ok: true }, 200, origin);
     }
 
     const name = clean(input.name).slice(0, 100);
     const email = clean(input.email).toLowerCase().slice(0, 254);
     const persona = clean(input.persona);
+    const referralSource = clean(input.referralSource);
 
-    if (name.length < 2 || !validEmail(email) || !['Creator', 'Brand'].includes(persona)) {
+    if (name.length < 2 || !validEmail(email) || !['Creator', 'Brand'].includes(persona) || !within(referralSource, REFERRAL_SOURCES)) {
       return json({ ok: false, error: 'Please check your details and try again.' }, 422, origin);
+    }
+
+    const customFields = {
+      persona,
+      referralSource,
+      source: 'Uncreator.club registration form',
+      submittedAt: new Date().toISOString(),
+    };
+
+    if (persona === 'Creator') {
+      const instagram = clean(input.instagram).slice(0, 200);
+      const city = clean(input.city).slice(0, 120);
+      const creatorTopics = cleanArray(input.creatorTopics);
+      const creatorIdentity = clean(input.creatorIdentity);
+      const creatorInterests = cleanArray(input.creatorInterests);
+      const creatorLinks = cleanArray(input.creatorLinks);
+      const followerInput = clean(input.instagramFollowers);
+      const instagramFollowers = followerInput === '' ? null : Number(followerInput);
+
+      if (
+        !instagram || !city || !creatorTopics.length || creatorTopics.some(value => !within(value, CREATOR_TOPICS)) ||
+        !within(creatorIdentity, CREATOR_IDENTITIES) || !creatorInterests.length || creatorInterests.some(value => !within(value, CREATOR_INTERESTS)) ||
+        creatorLinks.some(value => !validUrl(value)) ||
+        (instagramFollowers !== null && (!Number.isSafeInteger(instagramFollowers) || instagramFollowers < 0))
+      ) {
+        return json({ ok: false, error: 'Please check your creator details and try again.' }, 422, origin);
+      }
+
+      Object.assign(customFields, {
+        instagram,
+        city,
+        creatorTopics: creatorTopics.join(' | '),
+        creatorIdentity,
+        creatorInterests: creatorInterests.join(' | '),
+        creatorLinks: creatorLinks.join('\n'),
+      });
+      if (instagramFollowers !== null) customFields.instagramFollowers = instagramFollowers;
+    } else {
+      const brandName = clean(input.brandName).slice(0, 160);
+      const brandWebsite = clean(input.brandWebsite).slice(0, 500);
+      const brandCategory = clean(input.brandCategory);
+      const brandChallenges = cleanArray(input.brandChallenges);
+      const brandPerceptionStage = clean(input.brandPerceptionStage);
+      const preferredNextStep = clean(input.preferredNextStep);
+
+      if (
+        !brandName || !validUrl(brandWebsite) || !within(brandCategory, BRAND_CATEGORIES) ||
+        !brandChallenges.length || brandChallenges.some(value => !within(value, BRAND_CHALLENGES)) ||
+        !within(brandPerceptionStage, BRAND_STAGES) || !within(preferredNextStep, NEXT_STEPS)
+      ) {
+        return json({ ok: false, error: 'Please check your brand details and try again.' }, 422, origin);
+      }
+
+      Object.assign(customFields, { brandName, brandWebsite, brandCategory, brandChallenges: brandChallenges.join(' | '), brandPerceptionStage, preferredNextStep });
     }
 
     if (!env.AUTOSEND_API_KEY) {
@@ -95,11 +176,9 @@ export default {
       body: JSON.stringify({
         email,
         firstName: name,
-        customFields: {
-          persona,
-          source: 'Uncreator.club invite form',
-          submittedAt: new Date().toISOString(),
-        },
+        customFields,
+        ...(persona === 'Creator' && env.AUTOSEND_CREATOR_LIST_ID ? { listIds: [env.AUTOSEND_CREATOR_LIST_ID] } : {}),
+        ...(persona === 'Brand' && env.AUTOSEND_BRAND_LIST_ID ? { listIds: [env.AUTOSEND_BRAND_LIST_ID] } : {}),
       }),
     });
 

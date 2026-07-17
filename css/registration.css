@@ -1,0 +1,223 @@
+#join-dialog {
+  width: min(720px, calc(100% - 28px));
+  max-height: min(880px, calc(100dvh - 28px));
+  overflow: hidden;
+}
+
+#join-dialog .dialog-content {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  max-height: min(876px, calc(100dvh - 32px));
+}
+
+#join-dialog .dialog-body {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.registration-intro {
+  margin: 0 0 14px;
+  color: var(--muted);
+}
+
+.registration-progress {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 18px 0 4px;
+  font: 700 10px var(--display);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.registration-progress-track {
+  flex: 1;
+  height: 8px;
+  border: 1px solid var(--ink);
+  background: white;
+}
+
+.registration-progress-bar {
+  display: block;
+  width: 16.666%;
+  height: 100%;
+  background: var(--accent);
+  transition: width .2s ease;
+}
+
+.registration-flow[hidden],
+.form-step[hidden] {
+  display: none;
+}
+
+.form-step {
+  padding-top: 12px;
+}
+
+.form-step h3 {
+  margin: 0 0 7px;
+  font: 700 clamp(25px, 4vw, 36px)/1 var(--display);
+  letter-spacing: -.04em;
+}
+
+.form-step > p {
+  margin: 0 0 18px;
+  color: var(--muted);
+}
+
+.field-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 14px;
+}
+
+#join-dialog .field select,
+#join-dialog .field input {
+  width: 100%;
+  min-height: 48px;
+  border: 2px solid var(--ink);
+  border-radius: 0;
+  background: white;
+  padding: 10px 12px;
+  color: #222;
+  font: inherit;
+}
+
+.option-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.option-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 54px;
+  border: 2px solid var(--ink);
+  background: white;
+  padding: 11px 12px 11px 42px;
+  cursor: pointer;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.option-card input {
+  position: absolute;
+  left: 13px;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--accent);
+}
+
+.option-card:has(input:checked) {
+  background: var(--highlight);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.option-card:focus-within {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.group-error {
+  min-height: 1.3em;
+  margin: 10px 0 0;
+  color: #9c241f;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.creator-links {
+  display: grid;
+  gap: 8px;
+}
+
+.link-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 8px;
+}
+
+.link-row .field {
+  margin-bottom: 0;
+}
+
+.remove-link,
+.add-link {
+  border: 2px solid var(--ink);
+  background: var(--secondary);
+  color: var(--ink);
+  min-height: 42px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font: 700 11px var(--display);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.add-link {
+  margin-top: 12px;
+}
+
+.registration-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.registration-actions .button {
+  min-width: 148px;
+}
+
+.registration-actions [hidden] {
+  display: none !important;
+}
+
+.button--quiet {
+  border: 2px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  box-shadow: none;
+}
+
+.registration-privacy {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+@media (max-width: 620px) {
+  #join-dialog .dialog-head {
+    padding: 18px;
+  }
+
+  #join-dialog .dialog-body {
+    padding: 18px;
+  }
+
+  .field-grid,
+  .option-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .registration-actions .button {
+    min-width: 0;
+  }
+
+  .link-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .registration-progress-bar {
+    transition: none;
+  }
+}

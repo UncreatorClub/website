@@ -104,6 +104,7 @@ This is the working list for improvements that can be picked up one at a time.
 
 ## Done
 
+- [x] Rebuilt registration as separate six-step creator and brand flows, added repeatable creator links, configured the AutoSend property schema and dedicated lists, and verified both paths end to end. (2026-07-18)
 - [x] Connected the invite form to AutoSend through a GitHub-deployed Cloudflare Worker, with loading, success, failure, validation, and honeypot handling. (2026-07-18)
 - [x] Created the initial homepage layout and palette playground. (2026-07-18)
 - [x] Selected Split Zine with Mango Disco for the production homepage. (2026-07-18)

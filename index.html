@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/registration.css">
   <style>
     :root {
       --primary: #ff6f61;
@@ -577,72 +578,38 @@
     <div class="dialog-content">
       <div class="dialog-head"><h2 id="dialog-title">Come into the room.</h2><button class="dialog-close" type="button" aria-label="Close">×</button></div>
       <form class="dialog-body" id="interest-form">
-        <p>Start by telling us which side of the table you’re joining from.</p>
+        <p class="registration-intro">Choose your path. We’ll ask only what helps us make a thoughtful first match.</p>
         <div class="persona" role="group" aria-label="Choose your path"><button type="button" data-persona="Creator" aria-pressed="true">I’m a creator</button><button type="button" data-persona="Brand" aria-pressed="false">I’m a brand</button></div>
         <input type="hidden" name="persona" value="Creator">
-        <div class="field"><label for="join-name">Your name</label><input id="join-name" name="name" autocomplete="name" required placeholder="What should we call you?"></div>
-        <div class="field"><label for="join-email">Email</label><input id="join-email" name="email" type="email" autocomplete="email" required placeholder="you@example.com"></div>
-        <div class="form-honeypot" aria-hidden="true"><label for="join-website">Website</label><input id="join-website" name="website" tabindex="-1" autocomplete="off"></div>
-        <button class="button" type="submit">Request an invite <span class="arrow">↗</span></button>
+        <div class="registration-progress" aria-live="polite"><span data-progress-label>Creator · 1 of 6</span><span class="registration-progress-track" aria-hidden="true"><span class="registration-progress-bar" data-progress-bar></span></span></div>
+
+        <div class="registration-flow" data-registration-flow="Creator">
+          <section class="form-step" data-form-step="1"><h3 tabindex="-1">Tell us about your world.</h3><p>The basics, so we know who we’re speaking with.</p><div class="field-grid"><div class="field"><label for="creator-name">Name</label><input id="creator-name" name="name" autocomplete="name" required></div><div class="field"><label for="creator-email">Email</label><input id="creator-email" name="email" type="email" autocomplete="email" required></div><div class="field"><label for="creator-instagram">Instagram</label><input id="creator-instagram" name="instagram" required placeholder="@yourhandle"></div><div class="field"><label for="creator-city">City</label><input id="creator-city" name="city" autocomplete="address-level2" required></div></div></section>
+          <section class="form-step" data-form-step="2" hidden><h3 tabindex="-1">What do you create around?</h3><p>Select all that feel like your world.</p><div class="option-grid" data-required-group="creatorTopics"><label class="option-card"><input type="checkbox" name="creatorTopics" value="Beauty">Beauty</label><label class="option-card"><input type="checkbox" name="creatorTopics" value="Wellness">Wellness</label><label class="option-card"><input type="checkbox" name="creatorTopics" value="Fashion">Fashion</label><label class="option-card"><input type="checkbox" name="creatorTopics" value="Food">Food</label><label class="option-card"><input type="checkbox" name="creatorTopics" value="Lifestyle">Lifestyle</label><label class="option-card"><input type="checkbox" name="creatorTopics" value="Parenting">Parenting</label><label class="option-card"><input type="checkbox" name="creatorTopics" value="Tech">Tech</label><label class="option-card"><input type="checkbox" name="creatorTopics" value="Other">Other</label></div><p class="group-error" role="alert"></p></section>
+          <section class="form-step" data-form-step="3" hidden><h3 tabindex="-1">Which best describes you?</h3><p>Choose the one that feels closest today.</p><div class="option-grid"><label class="option-card"><input type="radio" name="creatorIdentity" value="I love discovering products early" required>I love discovering products early</label><label class="option-card"><input type="radio" name="creatorIdentity" value="I enjoy reviewing products">I enjoy reviewing products</label><label class="option-card"><input type="radio" name="creatorIdentity" value="I love sharing opinions">I love sharing opinions</label><label class="option-card"><input type="radio" name="creatorIdentity" value="I build communities">I build communities</label><label class="option-card"><input type="radio" name="creatorIdentity" value="I influence purchase decisions">I influence purchase decisions</label><label class="option-card"><input type="radio" name="creatorIdentity" value="A mix of all of these">A mix of all of these</label></div></section>
+          <section class="form-step" data-form-step="4" hidden><h3 tabindex="-1">What excites you most?</h3><p>Select all the ways you’d like to take part.</p><div class="option-grid" data-required-group="creatorInterests"><label class="option-card"><input type="checkbox" name="creatorInterests" value="Brand collaborations">Brand collaborations</label><label class="option-card"><input type="checkbox" name="creatorInterests" value="Product testing">Product testing</label><label class="option-card"><input type="checkbox" name="creatorInterests" value="Community events">Community events</label><label class="option-card"><input type="checkbox" name="creatorInterests" value="Creator networking">Creator networking</label><label class="option-card"><input type="checkbox" name="creatorInterests" value="Feedback circles">Feedback circles</label><label class="option-card"><input type="checkbox" name="creatorInterests" value="UGC opportunities">UGC opportunities</label></div><p class="group-error" role="alert"></p></section>
+          <section class="form-step" data-form-step="5" hidden><h3 tabindex="-1">Help us understand your reach.</h3><p>This is optional. Add as many portfolio, social, channel, or work links as you’d like.</p><div class="field"><label for="creator-followers">Instagram followers <span aria-hidden="true">(optional)</span></label><input id="creator-followers" name="instagramFollowers" type="number" min="0" inputmode="numeric"></div><div class="creator-links" data-creator-links><div class="link-row"><div class="field"><label for="creator-link-1">Creator link</label><input id="creator-link-1" name="creatorLinks" type="url" inputmode="url" placeholder="https://"></div></div></div><button class="add-link" data-add-creator-link type="button">+ Add another link</button></section>
+          <section class="form-step" data-form-step="6" hidden><h3 tabindex="-1">How did you hear about us?</h3><p>One last thing, then you’re in.</p><div class="option-grid"><label class="option-card"><input type="radio" name="referralSource" value="Instagram" required>Instagram</label><label class="option-card"><input type="radio" name="referralSource" value="LinkedIn">LinkedIn</label><label class="option-card"><input type="radio" name="referralSource" value="Friend">Friend</label><label class="option-card"><input type="radio" name="referralSource" value="Creator">Creator</label><label class="option-card"><input type="radio" name="referralSource" value="Brand Founder">Brand Founder</label><label class="option-card"><input type="radio" name="referralSource" value="Event">Event</label><label class="option-card"><input type="radio" name="referralSource" value="Other">Other</label></div></section>
+        </div>
+
+        <div class="registration-flow" data-registration-flow="Brand" hidden>
+          <section class="form-step" data-form-step="1"><h3 tabindex="-1">Let’s understand what you’re building.</h3><p>A little context before we talk growth.</p><div class="field-grid"><div class="field"><label for="brand-name">Brand name</label><input id="brand-name" name="brandName" autocomplete="organization" required></div><div class="field"><label for="brand-website">Website</label><input id="brand-website" name="brandWebsite" type="url" inputmode="url" placeholder="https://" required></div><div class="field"><label for="brand-contact-name">Your name</label><input id="brand-contact-name" name="name" autocomplete="name" required></div><div class="field"><label for="brand-email">Email</label><input id="brand-email" name="email" type="email" autocomplete="email" required></div></div></section>
+          <section class="form-step" data-form-step="2" hidden><h3 tabindex="-1">Which category best describes your brand?</h3><p>Choose the closest fit.</p><div class="field"><label for="brand-category">Brand category</label><select id="brand-category" name="brandCategory" required><option value="">Select a category</option><option>Beauty</option><option>Wellness</option><option>Fashion</option><option>Food &amp; Beverage</option><option>Lifestyle</option><option>Home</option><option>Other</option></select></div></section>
+          <section class="form-step" data-form-step="3" hidden><h3 tabindex="-1">What challenge are you trying to solve?</h3><p>Select all that matter right now.</p><div class="option-grid" data-required-group="brandChallenges"><label class="option-card"><input type="checkbox" name="brandChallenges" value="More awareness">More awareness</label><label class="option-card"><input type="checkbox" name="brandChallenges" value="More trust">More trust</label><label class="option-card"><input type="checkbox" name="brandChallenges" value="More content">More content</label><label class="option-card"><input type="checkbox" name="brandChallenges" value="Product launch">Product launch</label><label class="option-card"><input type="checkbox" name="brandChallenges" value="Community building">Community building</label><label class="option-card"><input type="checkbox" name="brandChallenges" value="Understanding customer perception">Understanding customer perception</label><label class="option-card"><input type="checkbox" name="brandChallenges" value="Creator partnerships">Creator partnerships</label><label class="option-card"><input type="checkbox" name="brandChallenges" value="Other">Other</label></div><p class="group-error" role="alert"></p></section>
+          <section class="form-step" data-form-step="4" hidden><h3 tabindex="-1">Which statement feels most true today?</h3><p>Choose the clearest description of where you are.</p><div class="option-grid"><label class="option-card"><input type="radio" name="brandPerceptionStage" value="Customers don't know us" required>Customers don’t know us</label><label class="option-card"><input type="radio" name="brandPerceptionStage" value="Customers know us but don't trust us">Customers know us but don’t trust us</label><label class="option-card"><input type="radio" name="brandPerceptionStage" value="Customers like us but don't buy">Customers like us but don’t buy</label><label class="option-card"><input type="radio" name="brandPerceptionStage" value="We don't know what customers think">We don’t know what customers think</label><label class="option-card"><input type="radio" name="brandPerceptionStage" value="We're launching something new">We’re launching something new</label></div></section>
+          <section class="form-step" data-form-step="5" hidden><h3 tabindex="-1">How would you like to continue?</h3><p>Tell us the next step that suits you.</p><div class="option-grid"><label class="option-card"><input type="radio" name="preferredNextStep" value="Book Discovery Call" required>Book discovery call</label><label class="option-card"><input type="radio" name="preferredNextStep" value="Join Waitlist">Join waitlist</label></div></section>
+          <section class="form-step" data-form-step="6" hidden><h3 tabindex="-1">How did you hear about us?</h3><p>One last thing, then you’re in.</p><div class="option-grid"><label class="option-card"><input type="radio" name="referralSource" value="Instagram" required>Instagram</label><label class="option-card"><input type="radio" name="referralSource" value="LinkedIn">LinkedIn</label><label class="option-card"><input type="radio" name="referralSource" value="Friend">Friend</label><label class="option-card"><input type="radio" name="referralSource" value="Creator">Creator</label><label class="option-card"><input type="radio" name="referralSource" value="Brand Founder">Brand Founder</label><label class="option-card"><input type="radio" name="referralSource" value="Event">Event</label><label class="option-card"><input type="radio" name="referralSource" value="Other">Other</label></div></section>
+        </div>
+
+        <div class="form-honeypot" aria-hidden="true"><label for="company-fax">Company fax</label><input id="company-fax" name="companyFax" tabindex="-1" autocomplete="off"></div>
+        <div class="registration-actions"><button class="button button--quiet" data-form-back type="button" hidden>← Back</button><button class="button" data-form-next type="button">Continue <span class="arrow">→</span></button><button class="button" type="submit" hidden>Complete registration <span class="arrow">↗</span></button></div>
         <p class="form-status" role="status" aria-live="polite"></p>
+        <p class="registration-privacy">We’ll use these details only to review your fit and contact you about Uncreator.club opportunities.</p>
       </form>
       <div class="success" role="status"><p class="eyebrow">You’re on the list</p><h3>See you in the room.</h3><p>We’ll be in touch with the right next step.</p><button class="button dialog-done" type="button">Done</button></div>
     </div>
   </dialog>
 
-  <script>
-    (() => {
-      const dialog = document.querySelector('#join-dialog');
-      const form = document.querySelector('#interest-form');
-      const success = document.querySelector('.success');
-      const submitButton = form.querySelector('[type="submit"]');
-      const formStatus = form.querySelector('.form-status');
-      const formEndpoint = 'https://uncreator-club-form.sunnykrgupta.workers.dev/submit';
-      const openDialog = () => {
-        form.style.display = '';
-        success.style.display = 'none';
-        formStatus.textContent = '';
-        submitButton.disabled = false;
-        dialog.showModal();
-      };
-
-      document.querySelectorAll('.js-open-dialog').forEach(button => button.addEventListener('click', openDialog));
-      document.querySelector('.dialog-close').addEventListener('click', () => dialog.close());
-      document.querySelector('.dialog-done').addEventListener('click', () => dialog.close());
-      dialog.addEventListener('click', event => {
-        if (event.target === dialog) dialog.close();
-      });
-
-      document.querySelectorAll('[data-persona]').forEach(button => button.addEventListener('click', () => {
-        document.querySelectorAll('[data-persona]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
-        form.elements.persona.value = button.dataset.persona;
-      }));
-
-      form.addEventListener('submit', async event => {
-        event.preventDefault();
-        if (!form.reportValidity()) return;
-        submitButton.disabled = true;
-        formStatus.textContent = 'Saving your request…';
-
-        try {
-          const response = await fetch(formEndpoint, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(Object.fromEntries(new FormData(form))),
-          });
-          const result = await response.json().catch(() => ({}));
-          if (!response.ok || !result.ok) throw new Error(result.error || 'Please try again.');
-
-          form.reset();
-          document.querySelectorAll('[data-persona]').forEach(item => item.setAttribute('aria-pressed', String(item.dataset.persona === 'Creator')));
-          form.style.display = 'none';
-          success.style.display = 'block';
-        } catch (error) {
-          formStatus.textContent = error.message || 'We could not save your request. Please try again.';
-          submitButton.disabled = false;
-        }
-      });
-    })();
-  </script>
+  <script src="js/registration.js"></script>
 </body>
 </html>
