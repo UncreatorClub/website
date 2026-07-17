@@ -3,8 +3,9 @@
 This Worker receives invite requests from the public website and upserts the
 contact into the Uncreator.Club project in AutoSend.
 
-Cloudflare Workers Builds deploys this directory from the repository's `main`
-branch. The Worker expects one encrypted secret in Cloudflare:
+Cloudflare Workers Builds deploys from the repository root on the `main`
+branch. The root `wrangler.jsonc` points to `worker/src/index.js`. The Worker
+expects one encrypted secret in Cloudflare:
 
 - `AUTOSEND_API_KEY` — the AutoSend project API key.
 
