@@ -23,12 +23,18 @@ const json = (body, status = 200, origin = '') => {
 
 const clean = value => typeof value === 'string' ? value.trim() : '';
 const validEmail = email => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-const validUrl = value => {
+const normalizeUrl = value => {
+  const raw = clean(value);
+  if (!raw) return '';
+  const withProtocol = raw.startsWith('//')
+    ? `https:${raw}`
+    : /^[a-z][a-z0-9+.-]*:\/\//i.test(raw) ? raw : `https://${raw}`;
+
   try {
-    const url = new URL(value);
-    return ['http:', 'https:'].includes(url.protocol);
+    const url = new URL(withProtocol);
+    return ['http:', 'https:'].includes(url.protocol) ? url.toString() : '';
   } catch {
-    return false;
+    return '';
   }
 };
 const cleanArray = value => Array.isArray(value) ? value.map(clean).filter(Boolean) : [];
@@ -121,14 +127,15 @@ export default {
       const creatorTopics = cleanArray(input.creatorTopics);
       const creatorIdentity = clean(input.creatorIdentity);
       const creatorInterests = cleanArray(input.creatorInterests);
-      const creatorLinks = cleanArray(input.creatorLinks);
+      const creatorLinkInputs = cleanArray(input.creatorLinks);
+      const creatorLinks = creatorLinkInputs.map(normalizeUrl);
       const followerInput = clean(input.instagramFollowers);
       const instagramFollowers = followerInput === '' ? null : Number(followerInput);
 
       if (
         !instagram || !city || !creatorTopics.length || creatorTopics.some(value => !within(value, CREATOR_TOPICS)) ||
         !within(creatorIdentity, CREATOR_IDENTITIES) || !creatorInterests.length || creatorInterests.some(value => !within(value, CREATOR_INTERESTS)) ||
-        creatorLinks.some(value => !validUrl(value)) ||
+        creatorLinks.some(value => !value) ||
         (instagramFollowers !== null && (!Number.isSafeInteger(instagramFollowers) || instagramFollowers < 0))
       ) {
         return json({ ok: false, error: 'Please check your creator details and try again.' }, 422, origin);
@@ -145,14 +152,14 @@ export default {
       if (instagramFollowers !== null) customFields.instagramFollowers = instagramFollowers;
     } else {
       const brandName = clean(input.brandName).slice(0, 160);
-      const brandWebsite = clean(input.brandWebsite).slice(0, 500);
+      const brandWebsite = normalizeUrl(clean(input.brandWebsite).slice(0, 500));
       const brandCategory = clean(input.brandCategory);
       const brandChallenges = cleanArray(input.brandChallenges);
       const brandPerceptionStage = clean(input.brandPerceptionStage);
       const preferredNextStep = clean(input.preferredNextStep);
 
       if (
-        !brandName || !validUrl(brandWebsite) || !within(brandCategory, BRAND_CATEGORIES) ||
+        !brandName || !brandWebsite || !within(brandCategory, BRAND_CATEGORIES) ||
         !brandChallenges.length || brandChallenges.some(value => !within(value, BRAND_CHALLENGES)) ||
         !within(brandPerceptionStage, BRAND_STAGES) || !within(preferredNextStep, NEXT_STEPS)
       ) {

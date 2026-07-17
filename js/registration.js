@@ -15,6 +15,27 @@
   let currentStep = 1;
   let creatorLinkCount = 1;
 
+  const normalizeUrlValue = value => {
+    const raw = value.trim();
+    if (!raw) return '';
+    const withProtocol = raw.startsWith('//')
+      ? `https:${raw}`
+      : /^[a-z][a-z0-9+.-]*:\/\//i.test(raw) ? raw : `https://${raw}`;
+
+    try {
+      const url = new URL(withProtocol);
+      return ['http:', 'https:'].includes(url.protocol) ? url.toString() : withProtocol;
+    } catch {
+      return withProtocol;
+    }
+  };
+
+  const normalizeUrlInputs = container => {
+    container.querySelectorAll('input[type="url"]:not(:disabled)').forEach(input => {
+      if (input.value.trim()) input.value = normalizeUrlValue(input.value);
+    });
+  };
+
   const activePersona = () => form.elements.persona.value;
   const activeFlow = () => form.querySelector(`[data-registration-flow="${activePersona()}"]`);
   const activeStep = () => activeFlow().querySelector(`[data-form-step="${currentStep}"]`);
@@ -39,6 +60,7 @@
 
   const validateCurrentStep = () => {
     const step = activeStep();
+    normalizeUrlInputs(step);
     const controls = [...step.querySelectorAll('input:not(:disabled), select:not(:disabled), textarea:not(:disabled)')];
     for (const control of controls) {
       if (!control.checkValidity()) {
@@ -95,7 +117,7 @@
     creatorLinkCount += 1;
     const row = document.createElement('div');
     row.className = 'link-row';
-    row.innerHTML = `<div class="field"><label for="creator-link-${creatorLinkCount}">Creator link</label><input id="creator-link-${creatorLinkCount}" name="creatorLinks" type="url" inputmode="url" placeholder="https://"></div><button class="remove-link" type="button" aria-label="Remove creator link">Remove</button>`;
+    row.innerHTML = `<div class="field"><label for="creator-link-${creatorLinkCount}">Creator link</label><input id="creator-link-${creatorLinkCount}" name="creatorLinks" type="url" inputmode="url" placeholder="instagram.com/yourhandle"></div><button class="remove-link" type="button" aria-label="Remove creator link">Remove</button>`;
     form.querySelector('[data-creator-links]').append(row);
     row.querySelector('input').focus();
   });
@@ -103,6 +125,12 @@
   form.querySelector('[data-creator-links]').addEventListener('click', event => {
     const removeButton = event.target.closest('.remove-link');
     if (removeButton) removeButton.closest('.link-row').remove();
+  });
+
+  form.addEventListener('focusout', event => {
+    if (event.target.matches('input[type="url"]') && event.target.value.trim()) {
+      event.target.value = normalizeUrlValue(event.target.value);
+    }
   });
 
   nextButton.addEventListener('click', () => {
@@ -130,6 +158,7 @@
     submitButton.disabled = true;
     formStatus.textContent = 'Saving your registration…';
 
+    normalizeUrlInputs(form);
     const formData = new FormData(form);
     const payload = Object.fromEntries(formData);
     ['brandChallenges', 'creatorTopics', 'creatorInterests', 'creatorLinks'].forEach(name => {
