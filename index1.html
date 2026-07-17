@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="en" data-layout="scrapbook" data-palette="carnival">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Uncreator.club brings ambitious brands and India's new creators into the same room.">
+  <title>Uncreator.club — Homepage directions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #ff6f61;
+      --secondary: #fff9f2;
+      --accent: #2d9cdb;
+      --highlight: #f9c74f;
+      --ink: #222222;
+      --paper: #fffdf9;
+      --muted: #695f59;
+      --line: rgba(34, 34, 34, .18);
+      --shadow: 6px 7px 0 rgba(34, 34, 34, .92);
+      --display: "Syne", sans-serif;
+      --body: "DM Sans", sans-serif;
+      --hand: "Caveat", cursive;
+      --max: 1280px;
+    }
+
+    html[data-palette="mango"] {
+      --primary: #ff6b35;
+      --secondary: #fff2e6;
+      --accent: #1fa6a6;
+      --highlight: #ffb703;
+      --ink: #2b2118;
+      --paper: #fffbf7;
+      --muted: #6d5b4b;
+      --line: rgba(43, 33, 24, .19);
+      --shadow: 6px 7px 0 rgba(43, 33, 24, .92);
+    }
+
+    html[data-palette="india"] {
+      --primary: #f45b69;
+      --secondary: #faf3e8;
+      --accent: #4361ee;
+      --highlight: #f4a261;
+      --ink: #2d2a26;
+      --paper: #fffdf9;
+      --muted: #6c655d;
+      --line: rgba(45, 42, 38, .19);
+      --shadow: 6px 7px 0 rgba(45, 42, 38, .92);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--secondary);
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 16px;
+      line-height: 1.55;
+      transition: background-color .25s ease, color .25s ease;
+    }
+    button, input, select { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+    .skip-link { position: fixed; left: 16px; top: -80px; z-index: 1000; background: var(--ink); color: var(--paper); padding: 10px 14px; }
+    .skip-link:focus { top: 16px; }
+    .shell { width: min(var(--max), calc(100% - 48px)); margin: 0 auto; }
+    .eyebrow { margin: 0 0 14px; font: 700 12px/1 var(--display); letter-spacing: .14em; text-transform: uppercase; }
+    .scribble { font-family: var(--hand); font-weight: 700; }
+    .button {
+      min-height: 48px;
+      border: 2px solid var(--ink);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 20px;
+      background: var(--primary);
+      color: var(--ink);
+      font: 700 14px/1 var(--display);
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 4px 4px 0 var(--ink);
+      transition: transform .18s ease, box-shadow .18s ease, background-color .2s ease;
+    }
+    .button:hover { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--ink); }
+    .button--quiet { background: var(--paper); }
+    .button--ink { background: var(--ink); color: var(--secondary); }
+    .arrow { font-size: 20px; line-height: 0; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: color-mix(in srgb, var(--secondary) 92%, transparent);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+    }
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { text-decoration: none; font: 800 clamp(24px, 3vw, 34px)/.9 var(--display); letter-spacing: -.07em; color: var(--primary); }
+    .brand span { color: var(--ink); font-size: .52em; letter-spacing: -.03em; }
+    .navlinks { display: flex; align-items: center; gap: 30px; }
+    .navlinks a { position: relative; text-decoration: none; font-weight: 600; font-size: 14px; }
+    .navlinks a::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -5px; height: 3px; background: var(--primary); transition: right .2s ease; }
+    .navlinks a:hover::after { right: 0; }
+
+    .hero { min-height: 730px; padding: 80px 0 64px; overflow: hidden; }
+    .hero-grid { display: grid; grid-template-columns: 1.08fr .92fr; gap: 72px; align-items: center; }
+    .hero h1 { margin: 0; max-width: 820px; font: 800 clamp(54px, 7.4vw, 106px)/.9 var(--display); letter-spacing: -.075em; }
+    .hero h1 .room { color: var(--primary); display: inline-block; }
+    .hero-lede { max-width: 620px; margin: 28px 0 32px; font-size: clamp(17px, 1.7vw, 21px); color: var(--muted); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+    .micro-proof { display: flex; align-items: center; gap: 12px; margin-top: 34px; font-size: 13px; font-weight: 600; }
+    .faces { display: flex; }
+    .face { width: 34px; height: 34px; margin-right: -8px; border: 2px solid var(--secondary); border-radius: 50%; display: grid; place-items: center; background: var(--accent); color: white; font: 700 10px var(--display); }
+    .face:nth-child(2) { background: var(--highlight); color: var(--ink); }
+    .face:nth-child(3) { background: var(--primary); }
+
+    .stage { min-height: 540px; position: relative; }
+    .stage-panel { display: none; position: absolute; inset: 0; }
+    html[data-layout="scrapbook"] .stage-scrapbook,
+    html[data-layout="noticeboard"] .stage-noticeboard,
+    html[data-layout="festival"] .stage-festival,
+    html[data-layout="club"] .stage-club { display: block; }
+
+    .polaroid { position: absolute; width: 56%; padding: 12px 12px 44px; background: white; border: 1px solid rgba(0,0,0,.12); box-shadow: 0 14px 28px rgba(34,34,34,.14); }
+    .polaroid::after { content: attr(data-label); position: absolute; bottom: 9px; left: 18px; font: 700 20px var(--hand); color: #222; }
+    .polaroid.one { left: 0; top: 64px; transform: rotate(-6deg); }
+    .polaroid.two { right: 0; top: 12px; transform: rotate(7deg); }
+    .photo { aspect-ratio: 4 / 4.5; position: relative; overflow: hidden; background: var(--accent); }
+    .photo::before, .photo::after { content: ""; position: absolute; border-radius: 50%; }
+    .photo::before { width: 42%; aspect-ratio: 1; left: 30%; top: 14%; background: var(--highlight); }
+    .photo::after { width: 86%; height: 60%; left: 7%; bottom: -20%; border-radius: 45% 45% 0 0; background: var(--primary); }
+    .photo.alt { background: var(--highlight); }
+    .photo.alt::before { background: var(--primary); left: 16%; }
+    .photo.alt::after { background: var(--accent); left: -5%; width: 110%; }
+    .tape { position: absolute; width: 108px; height: 28px; background: color-mix(in srgb, var(--highlight) 72%, white); opacity: .9; z-index: 3; transform: rotate(-12deg); }
+    .tape.t1 { top: 44px; left: 74px; }
+    .tape.t2 { top: 0; right: 74px; transform: rotate(9deg); }
+    .sticker { position: absolute; z-index: 4; display: grid; place-items: center; background: var(--ink); color: var(--secondary); font: 800 13px/1 var(--display); text-align: center; text-transform: uppercase; }
+    .sticker-round { width: 106px; aspect-ratio: 1; border-radius: 50%; right: -14px; bottom: 60px; transform: rotate(-8deg); }
+    .sticker-note { left: 34px; bottom: 4px; padding: 14px 18px; background: var(--highlight); color: var(--ink); transform: rotate(3deg); border: 2px solid var(--ink); }
+
+    .board { height: 100%; padding: 26px; background: color-mix(in srgb, var(--highlight) 36%, var(--secondary)); border: 12px solid var(--ink); box-shadow: var(--shadow); display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-content: start; }
+    .pin-card { position: relative; padding: 20px; min-height: 160px; background: var(--paper); border: 2px solid var(--ink); box-shadow: 3px 4px 0 color-mix(in srgb, var(--ink) 85%, transparent); transform: rotate(-1deg); }
+    .pin-card:nth-child(2) { background: var(--primary); transform: rotate(2deg); }
+    .pin-card:nth-child(3) { grid-column: 1 / -1; background: var(--accent); color: white; transform: rotate(.5deg); }
+    .pin { position: absolute; width: 13px; height: 13px; top: 8px; left: 50%; background: var(--ink); border-radius: 50%; box-shadow: 2px 3px 0 rgba(0,0,0,.2); }
+    .pin-card small { display: block; margin-bottom: 10px; font: 700 10px var(--display); letter-spacing: .12em; text-transform: uppercase; }
+    .pin-card strong { display: block; font: 700 23px/1.05 var(--display); }
+    .pin-card p { margin: 10px 0 0; font-size: 13px; }
+
+    .festival-art { height: 100%; position: relative; background: var(--primary); border: 3px solid var(--ink); overflow: hidden; box-shadow: var(--shadow); }
+    .festival-art .sun { position: absolute; width: 310px; aspect-ratio: 1; border-radius: 50%; background: var(--highlight); border: 3px solid var(--ink); right: -64px; top: -50px; }
+    .festival-art .wave { position: absolute; width: 430px; height: 220px; border-radius: 50%; background: var(--accent); border: 3px solid var(--ink); left: -110px; bottom: -80px; transform: rotate(9deg); }
+    .festival-art .poster-copy { position: absolute; inset: 58px 34px auto; z-index: 2; font: 800 clamp(48px, 6vw, 82px)/.79 var(--display); letter-spacing: -.07em; text-transform: uppercase; }
+    .festival-art .date { position: absolute; z-index: 3; right: 24px; bottom: 22px; padding: 10px 14px; background: var(--ink); color: var(--secondary); font: 700 12px var(--display); transform: rotate(-4deg); }
+    .festival-art .spark { position: absolute; z-index: 2; left: 42%; top: 58%; font: 800 86px/1 var(--display); color: var(--highlight); -webkit-text-stroke: 3px var(--ink); }
+
+    .member-card { height: 360px; padding: 28px; position: relative; background: var(--ink); color: var(--secondary); border: 3px solid var(--ink); box-shadow: var(--shadow); overflow: hidden; }
+    .member-card::after { content: "UC"; position: absolute; right: -18px; bottom: -56px; color: var(--primary); font: 800 180px/.8 var(--display); letter-spacing: -.1em; opacity: .85; }
+    .member-card .card-top { display: flex; justify-content: space-between; align-items: start; font: 700 11px var(--display); letter-spacing: .1em; text-transform: uppercase; }
+    .member-card .badge { width: 94px; aspect-ratio: 1; margin-top: 58px; border-radius: 50%; border: 2px solid var(--secondary); display: grid; place-items: center; color: var(--highlight); font: 800 34px var(--display); }
+    .member-card h3 { position: relative; z-index: 2; margin: 22px 0 0; font: 700 30px/1 var(--display); }
+    .rankings { width: 88%; margin: -30px 0 0 auto; position: relative; z-index: 3; background: var(--paper); border: 2px solid var(--ink); padding: 18px; box-shadow: 4px 4px 0 var(--accent); }
+    .ranking { display: grid; grid-template-columns: 28px 1fr auto; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 12px; font-weight: 700; }
+    .ranking:last-child { border: 0; }
+    .ranking span:last-child { color: var(--accent); }
+
+    .ticker { overflow: hidden; border-block: 2px solid var(--ink); background: var(--highlight); }
+    .ticker-track { width: max-content; display: flex; gap: 32px; padding: 12px 0; font: 800 14px/1 var(--display); text-transform: uppercase; animation: ticker 25s linear infinite; }
+    @keyframes ticker { to { transform: translateX(-50%); } }
+
+    .section { padding: 112px 0; }
+    .section--paper { background: var(--paper); }
+    .section-head { display: grid; grid-template-columns: .8fr 1.2fr; gap: 60px; margin-bottom: 54px; align-items: end; }
+    .section h2 { margin: 0; font: 800 clamp(40px, 5.2vw, 72px)/.94 var(--display); letter-spacing: -.06em; }
+    .section-intro { margin: 0 0 4px; color: var(--muted); font-size: 18px; max-width: 620px; }
+    .bridge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .bridge-card { position: relative; min-height: 410px; padding: 38px; border: 2px solid var(--ink); overflow: hidden; }
+    .bridge-card:first-child { background: var(--primary); }
+    .bridge-card:last-child { background: var(--accent); color: white; }
+    .bridge-card .num { font: 800 13px var(--display); letter-spacing: .12em; }
+    .bridge-card h3 { max-width: 430px; margin: 84px 0 18px; font: 700 clamp(31px, 3.6vw, 50px)/.95 var(--display); letter-spacing: -.045em; }
+    .bridge-card p { max-width: 470px; margin: 0; font-size: 16px; }
+    .bridge-card .big-letter { position: absolute; right: -20px; bottom: -48px; color: rgba(255,255,255,.16); font: 800 230px/.8 var(--display); }
+
+    .steps { counter-reset: step; display: grid; grid-template-columns: repeat(3, 1fr); border: 2px solid var(--ink); }
+    .step { counter-increment: step; min-height: 280px; padding: 32px; background: var(--secondary); border-right: 2px solid var(--ink); }
+    .step:last-child { border-right: 0; }
+    .step::before { content: "0" counter(step); display: block; margin-bottom: 62px; font: 800 12px var(--display); color: var(--primary); }
+    .step h3 { margin: 0 0 14px; font: 700 25px/1.05 var(--display); letter-spacing: -.035em; }
+    .step p { margin: 0; color: var(--muted); font-size: 14px; }
+
+    .opportunities { display: grid; grid-template-columns: 1.15fr .85fr; gap: 24px; }
+    .opportunity-main { min-height: 450px; background: var(--highlight); border: 2px solid var(--ink); padding: 38px; display: flex; flex-direction: column; justify-content: space-between; }
+    .opportunity-main h3 { margin: 0; max-width: 670px; font: 800 clamp(42px, 5vw, 70px)/.92 var(--display); letter-spacing: -.06em; }
+    .opportunity-main p { max-width: 560px; }
+    .opportunity-stack { display: grid; gap: 24px; }
+    .mini-card { padding: 26px; border: 2px solid var(--ink); background: var(--paper); }
+    .mini-card:nth-child(2) { background: var(--ink); color: var(--secondary); }
+    .mini-card .tag { font: 700 10px var(--display); letter-spacing: .12em; text-transform: uppercase; color: var(--primary); }
+    .mini-card h4 { margin: 18px 0 8px; font: 700 24px/1 var(--display); }
+    .mini-card p { margin: 0; font-size: 13px; color: var(--muted); }
+    .mini-card:nth-child(2) p { color: color-mix(in srgb, var(--secondary) 65%, transparent); }
+
+    .quote { text-align: center; background: var(--primary); border-block: 2px solid var(--ink); padding: 98px 24px; }
+    .quote blockquote { max-width: 1040px; margin: 0 auto; font: 700 clamp(34px, 5.2vw, 70px)/1 var(--display); letter-spacing: -.055em; }
+    .quote p { margin: 24px 0 0; font: 700 13px var(--display); text-transform: uppercase; letter-spacing: .12em; }
+
+    .footer { padding: 72px 0 24px; background: var(--ink); color: var(--secondary); }
+    .footer-grid { display: grid; grid-template-columns: 1.35fr repeat(2, .65fr); gap: 56px; }
+    .footer .brand { font-size: clamp(42px, 6vw, 78px); }
+    .footer h4 { margin: 0 0 16px; font: 700 12px var(--display); text-transform: uppercase; letter-spacing: .13em; color: var(--highlight); }
+    .footer a { display: block; margin: 8px 0; text-decoration: none; }
+    .footer-bottom { display: flex; justify-content: space-between; gap: 24px; margin-top: 64px; padding-top: 18px; border-top: 1px solid color-mix(in srgb, var(--secondary) 20%, transparent); font-size: 12px; }
+
+    .switcher {
+      position: fixed;
+      z-index: 90;
+      right: 18px;
+      top: 96px;
+      width: 258px;
+      background: var(--paper);
+      border: 2px solid var(--ink);
+      box-shadow: var(--shadow);
+      transition: transform .25s ease;
+    }
+    .switcher.is-collapsed { transform: translateX(calc(100% - 52px)); }
+    .switcher-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 48px; padding: 10px 12px; border-bottom: 2px solid var(--ink); background: var(--ink); color: var(--secondary); }
+    .switcher-head strong { font: 700 11px var(--display); letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; }
+    .switch-toggle { border: 0; width: 28px; height: 28px; padding: 0; background: var(--highlight); color: var(--ink); cursor: pointer; font-weight: 800; }
+    .switcher-body { padding: 14px; }
+    .control-label { margin: 0 0 8px; font: 700 10px var(--display); letter-spacing: .12em; text-transform: uppercase; }
+    .choice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-bottom: 16px; }
+    .choice { min-height: 38px; border: 1px solid var(--ink); background: var(--secondary); color: var(--ink); padding: 7px; cursor: pointer; font-size: 11px; font-weight: 700; text-align: left; }
+    .choice[aria-pressed="true"] { background: var(--primary); box-shadow: 2px 2px 0 var(--ink); }
+    .palette-list { display: grid; gap: 7px; }
+    .palette-choice { display: grid; grid-template-columns: 58px 1fr; align-items: center; gap: 8px; min-height: 37px; border: 1px solid var(--ink); background: white; color: #222; padding: 5px; cursor: pointer; text-align: left; font-size: 11px; font-weight: 700; }
+    .palette-choice[aria-pressed="true"] { box-shadow: 2px 2px 0 var(--ink); }
+    .swatches { display: flex; height: 25px; overflow: hidden; }
+    .swatches i { flex: 1; }
+    .carnival-swatch i:nth-child(1) { background:#ff6f61; } .carnival-swatch i:nth-child(2) { background:#2d9cdb; } .carnival-swatch i:nth-child(3) { background:#f9c74f; }
+    .mango-swatch i:nth-child(1) { background:#ff6b35; } .mango-swatch i:nth-child(2) { background:#1fa6a6; } .mango-swatch i:nth-child(3) { background:#ffb703; }
+    .india-swatch i:nth-child(1) { background:#f45b69; } .india-swatch i:nth-child(2) { background:#4361ee; } .india-swatch i:nth-child(3) { background:#f4a261; }
+    .current-note { padding-top: 10px; border-top: 1px solid var(--line); font-size: 10px; color: var(--muted); }
+
+    dialog { width: min(570px, calc(100% - 32px)); border: 2px solid var(--ink); padding: 0; background: var(--paper); color: var(--ink); box-shadow: 10px 12px 0 var(--ink); }
+    dialog::backdrop { background: rgba(34,34,34,.68); backdrop-filter: blur(4px); }
+    .dialog-head { display: flex; justify-content: space-between; gap: 20px; padding: 22px 24px; border-bottom: 2px solid var(--ink); background: var(--primary); }
+    .dialog-head h2 { margin: 0; font: 700 29px/1 var(--display); letter-spacing: -.04em; }
+    .dialog-close { width: 34px; height: 34px; border: 2px solid var(--ink); background: var(--paper); cursor: pointer; font-weight: 800; }
+    .dialog-body { padding: 24px; }
+    .persona { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 18px; }
+    .persona button { min-height: 62px; border: 2px solid var(--ink); background: var(--secondary); cursor: pointer; font-weight: 700; }
+    .persona button[aria-pressed="true"] { background: var(--highlight); box-shadow: 3px 3px 0 var(--ink); }
+    .field { display: grid; gap: 6px; margin: 14px 0; }
+    .field label { font: 700 11px var(--display); text-transform: uppercase; letter-spacing: .1em; }
+    .field input { width: 100%; min-height: 48px; border: 2px solid var(--ink); background: white; padding: 10px 12px; color: #222; }
+    .success { display: none; padding: 44px 24px; text-align: center; }
+    .success h3 { margin: 0 0 12px; font: 700 34px/1 var(--display); }
+
+    /* The same content takes on four materially different page compositions. */
+    html[data-layout="noticeboard"] .hero-grid { grid-template-columns: .86fr 1.14fr; }
+    html[data-layout="noticeboard"] .hero h1 { font-size: clamp(50px, 6.3vw, 90px); }
+    html[data-layout="noticeboard"] .hero { background-image: radial-gradient(var(--line) 1.2px, transparent 1.2px); background-size: 18px 18px; }
+    html[data-layout="noticeboard"] .bridge-card, html[data-layout="noticeboard"] .mini-card { box-shadow: 5px 6px 0 var(--ink); transform: rotate(-.3deg); }
+    html[data-layout="noticeboard"] .bridge-card:last-child, html[data-layout="noticeboard"] .mini-card:nth-child(2) { transform: rotate(.4deg); }
+
+    html[data-layout="festival"] .hero { padding-top: 54px; }
+    html[data-layout="festival"] .hero-grid { grid-template-columns: 1fr; gap: 38px; }
+    html[data-layout="festival"] .hero-copy { text-align: center; }
+    html[data-layout="festival"] .hero h1 { max-width: 1150px; margin-inline: auto; font-size: clamp(58px, 9.4vw, 132px); }
+    html[data-layout="festival"] .hero-lede { margin-inline: auto; }
+    html[data-layout="festival"] .hero-actions, html[data-layout="festival"] .micro-proof { justify-content: center; }
+    html[data-layout="festival"] .stage { min-height: 460px; width: min(840px, 100%); margin: 0 auto; }
+    html[data-layout="festival"] .section-head { grid-template-columns: 1fr; text-align: center; }
+    html[data-layout="festival"] .section-intro { margin-inline: auto; }
+    html[data-layout="festival"] .bridge-grid { grid-template-columns: 1.15fr .85fr; transform: rotate(-.5deg); }
+    html[data-layout="festival"] .steps { transform: rotate(.35deg); }
+
+    html[data-layout="club"] body { background: var(--ink); }
+    html[data-layout="club"] .topbar { background: color-mix(in srgb, var(--ink) 94%, transparent); color: var(--secondary); border-color: rgba(255,255,255,.14); }
+    html[data-layout="club"] .brand span { color: var(--secondary); }
+    html[data-layout="club"] .hero { background: var(--secondary); margin: 20px; min-height: 700px; border: 2px solid var(--ink); }
+    html[data-layout="club"] .hero-grid { grid-template-columns: 1fr 1fr; gap: 38px; }
+    html[data-layout="club"] .hero h1 { font-size: clamp(52px, 6.4vw, 92px); }
+    html[data-layout="club"] .ticker { margin-inline: 20px; }
+    html[data-layout="club"] .section { margin-inline: 20px; }
+    html[data-layout="club"] .section:not(.section--paper) { color: var(--secondary); }
+    html[data-layout="club"] .section:not(.section--paper) .section-intro { color: color-mix(in srgb, var(--secondary) 65%, transparent); }
+    html[data-layout="club"] .section--paper { background: var(--secondary); }
+    html[data-layout="club"] .steps { border-color: var(--secondary); }
+    html[data-layout="club"] .step { background: var(--ink); border-color: var(--secondary); }
+    html[data-layout="club"] .step p { color: color-mix(in srgb, var(--secondary) 65%, transparent); }
+    html[data-layout="club"] .bridge-card { min-height: 500px; }
+    html[data-layout="club"] .footer { border-top: 1px solid rgba(255,255,255,.15); }
+
+    @media (max-width: 980px) {
+      .navlinks a:not(.button) { display: none; }
+      .hero-grid, html[data-layout="noticeboard"] .hero-grid, html[data-layout="club"] .hero-grid { grid-template-columns: 1fr; }
+      .hero { padding-top: 64px; }
+      .hero-copy { text-align: center; }
+      .hero h1, .hero-lede { margin-inline: auto; }
+      .hero-actions, .micro-proof { justify-content: center; }
+      .stage { width: min(590px, 100%); margin: 0 auto; }
+      .section-head { grid-template-columns: 1fr; gap: 20px; }
+      .opportunities { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid > :first-child { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 700px) {
+      .shell { width: min(100% - 32px, var(--max)); }
+      .nav { min-height: 66px; }
+      .navlinks .button { min-height: 40px; padding: 9px 12px; font-size: 11px; }
+      .hero { min-height: 0; padding: 52px 0 42px; }
+      .hero h1 { font-size: clamp(49px, 15vw, 74px); }
+      .hero-lede { margin-block: 20px 24px; }
+      .hero-actions .button { width: 100%; }
+      .stage { min-height: 430px; margin-top: 16px; }
+      .polaroid { width: 61%; }
+      .sticker-round { width: 84px; }
+      .board { padding: 14px; border-width: 8px; gap: 10px; }
+      .pin-card { padding: 15px; min-height: 140px; }
+      .pin-card strong { font-size: 18px; }
+      .festival-art .poster-copy { font-size: 48px; }
+      .member-card { height: 320px; }
+      .section { padding: 74px 0; }
+      .section h2 { font-size: clamp(39px, 12vw, 58px); }
+      .bridge-grid, html[data-layout="festival"] .bridge-grid { grid-template-columns: 1fr; transform: none; }
+      .bridge-card { min-height: 350px; padding: 26px; }
+      .steps { grid-template-columns: 1fr; }
+      .step { min-height: 0; border-right: 0; border-bottom: 2px solid var(--ink); }
+      .step:last-child { border-bottom: 0; }
+      .step::before { margin-bottom: 30px; }
+      html[data-layout="club"] .steps { border-color: var(--secondary); }
+      html[data-layout="club"] .step { border-color: var(--secondary); }
+      .opportunity-main { min-height: 390px; padding: 26px; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-grid > :first-child { grid-column: auto; }
+      .footer-bottom { flex-direction: column; }
+      .switcher { top: auto; bottom: 12px; right: 12px; left: 12px; width: auto; max-height: 70vh; overflow: auto; }
+      .switcher.is-collapsed { transform: translateY(calc(100% - 50px)); }
+      .choice-grid { grid-template-columns: repeat(4, 1fr); }
+      .choice { text-align: center; font-size: 9px; padding: 5px; }
+      .palette-list { grid-template-columns: repeat(3, 1fr); }
+      .palette-choice { grid-template-columns: 1fr; }
+      .palette-choice span:last-child { display: none; }
+      html[data-layout="club"] .hero, html[data-layout="club"] .section, html[data-layout="club"] .ticker { margin-inline: 8px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="topbar">
+    <nav class="nav shell" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="Uncreator.club home">uncreator<span>.club</span></a>
+      <div class="navlinks">
+        <a href="#why">Why us</a>
+        <a href="#how">How it works</a>
+        <a href="#opportunities">Opportunities</a>
+        <button class="button js-open-dialog" type="button">Get in the room <span class="arrow">↗</span></button>
+      </div>
+    </nav>
+  </header>
+
+  <aside class="switcher" aria-label="Homepage preview controls">
+    <div class="switcher-head">
+      <strong>Try a direction</strong>
+      <button class="switch-toggle" type="button" aria-label="Collapse preview controls" aria-expanded="true">→</button>
+    </div>
+    <div class="switcher-body">
+      <p class="control-label">Layout</p>
+      <div class="choice-grid" role="group" aria-label="Choose layout">
+        <button class="choice" data-layout-choice="scrapbook" aria-pressed="true">Scrapbook</button>
+        <button class="choice" data-layout-choice="noticeboard" aria-pressed="false">Noticeboard</button>
+        <button class="choice" data-layout-choice="festival" aria-pressed="false">Festival</button>
+        <button class="choice" data-layout-choice="club" aria-pressed="false">Internet club</button>
+      </div>
+      <p class="control-label">Colour story</p>
+      <div class="palette-list" role="group" aria-label="Choose colour palette">
+        <button class="palette-choice" data-palette-choice="carnival" aria-pressed="true"><span class="swatches carnival-swatch"><i></i><i></i><i></i></span><span>Creator Carnival</span></button>
+        <button class="palette-choice" data-palette-choice="mango" aria-pressed="false"><span class="swatches mango-swatch"><i></i><i></i><i></i></span><span>Mango Disco</span></button>
+        <button class="palette-choice" data-palette-choice="india" aria-pressed="false"><span class="swatches india-swatch"><i></i><i></i><i></i></span><span>India’s New Creators</span></button>
+      </div>
+      <div class="current-note" aria-live="polite">Viewing Creator Scrapbook × Creator Carnival</div>
+    </div>
+  </aside>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-grid shell">
+        <div class="hero-copy">
+          <p class="eyebrow">Brands × creators × community</p>
+          <h1>You’re finally <span class="room">in the room.</span></h1>
+          <p class="hero-lede">Many creators feel overlooked. Many brands feel priced out. Uncreator.club is where they finally find each other — and build work that moves culture.</p>
+          <div class="hero-actions">
+            <button class="button js-open-dialog" type="button">Join the club <span class="arrow">↗</span></button>
+            <a class="button button--quiet" href="#how">See how it works</a>
+          </div>
+          <div class="micro-proof">
+            <div class="faces" aria-hidden="true"><span class="face">AK</span><span class="face">RM</span><span class="face">NS</span></div>
+            <span>Built for India’s next wave of creators & brands</span>
+          </div>
+        </div>
+
+        <div class="stage" aria-label="Visual expression of the selected layout">
+          <div class="stage-panel stage-scrapbook" aria-hidden="true">
+            <span class="tape t1"></span><span class="tape t2"></span>
+            <div class="polaroid one" data-label="found the brief ✦"><div class="photo"></div></div>
+            <div class="polaroid two" data-label="made it ours"><div class="photo alt"></div></div>
+            <div class="sticker sticker-round">create<br>together</div>
+            <div class="sticker sticker-note">OPEN CALL →</div>
+          </div>
+          <div class="stage-panel stage-noticeboard" aria-hidden="true">
+            <div class="board">
+              <article class="pin-card"><i class="pin"></i><small>Open call · Beauty</small><strong>Five creators wanted for a skin-first launch.</strong><p>Paid collaboration · Mumbai + remote</p></article>
+              <article class="pin-card"><i class="pin"></i><small>Club note</small><strong>Good ideas deserve better rooms.</strong><p class="scribble">You’re invited ✦</p></article>
+              <article class="pin-card"><i class="pin"></i><small>Creator shoutout</small><strong>“The first brief where my perspective was the strategy.”</strong><p>— Rhea, culture creator</p></article>
+            </div>
+          </div>
+          <div class="stage-panel stage-festival" aria-hidden="true">
+            <div class="festival-art"><span class="sun"></span><span class="wave"></span><div class="poster-copy">Make<br>culture<br>move.</div><span class="spark">✦</span><span class="date">CREATOR SOCIAL · 08.08</span></div>
+          </div>
+          <div class="stage-panel stage-club" aria-hidden="true">
+            <div class="member-card"><div class="card-top"><span>Uncreator.club</span><span>Founding member</span></div><div class="badge">01</div><h3>Naya Sharma<br><small>Culture maker · Mumbai</small></h3></div>
+            <div class="rankings"><p class="eyebrow">This week in the club</p><div class="ranking"><span>01</span><span>Food storytellers</span><span>+42%</span></div><div class="ranking"><span>02</span><span>Micro beauty voices</span><span>+31%</span></div><div class="ranking"><span>03</span><span>Homegrown fashion</span><span>+24%</span></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ticker" aria-label="What the community makes possible">
+      <div class="ticker-track"><span>Better briefs ✦</span><span>Real creator voice ✦</span><span>Culture-led growth ✦</span><span>Community, not inventory ✦</span><span>Better briefs ✦</span><span>Real creator voice ✦</span><span>Culture-led growth ✦</span><span>Community, not inventory ✦</span></div>
+    </div>
+
+    <section class="section section--paper" id="why">
+      <div class="shell">
+        <div class="section-head"><div><p class="eyebrow">The reason we exist</p><h2>Built for both sides of the table.</h2></div><p class="section-intro">We replace transactional creator marketing with a shared creative room — one where cultural instinct, clear strategy and fair opportunity meet.</p></div>
+        <div class="bridge-grid">
+          <article class="bridge-card"><span class="num">FOR CREATORS / 01</span><h3>Your perspective is the product.</h3><p>Find thoughtful briefs, meet brands early and turn your cultural intelligence into meaningful, paid work.</p><span class="big-letter">C</span></article>
+          <article class="bridge-card"><span class="num">FOR BRANDS / 02</span><h3>Build with culture, not around it.</h3><p>Hear what real customers are saying, collaborate with the right voices and create campaigns people actually care about.</p><span class="big-letter">B</span></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="how">
+      <div class="shell">
+        <div class="section-head"><div><p class="eyebrow">Simple by design</p><h2>From “hello” to “we made this.”</h2></div><p class="section-intro">No endless marketplace scroll. We learn what you care about, create a considered match and stay close while the work takes shape.</p></div>
+        <div class="steps">
+          <article class="step"><h3>Tell us what matters</h3><p>Creators share their point of view. Brands share the growth or perception gap they need to solve.</p></article>
+          <article class="step"><h3>Meet your people</h3><p>We curate fit around culture, chemistry and ambition — not only reach or follower counts.</p></article>
+          <article class="step"><h3>Make work that travels</h3><p>Build the idea together, launch with clarity and learn from the community response.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--paper" id="opportunities">
+      <div class="shell">
+        <div class="section-head"><div><p class="eyebrow">Happening in the club</p><h2>Opportunity, with a pulse.</h2></div><p class="section-intro">The community comes alive through open calls, creator rooms, brand labs and small events built around useful conversations.</p></div>
+        <div class="opportunities">
+          <article class="opportunity-main"><div><p class="eyebrow">Next up · Community room</p><h3>What will India’s next creator economy value?</h3></div><div><p>A candid evening with independent creators, emerging brand founders and people shaping what comes next.</p><button class="button button--ink js-open-dialog" type="button">Ask for an invite ↗</button></div></article>
+          <div class="opportunity-stack"><article class="mini-card"><span class="tag">Open call · 12 spots</span><h4>Food stories without the clichés</h4><p>For regional food creators and a new pantry brand.</p></article><article class="mini-card"><span class="tag">Brand lab · August</span><h4>From customer signal to campaign</h4><p>A working session for early-stage consumer founders.</p></article></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="quote" aria-label="Community testimonial"><blockquote>“I didn’t feel like media inventory. I felt like the person with the missing piece.”</blockquote><p>Creator, founding circle</p></section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell">
+      <div class="footer-grid"><div><a class="brand" href="#top">uncreator<span>.club</span></a><p>For the people making culture<br>and the brands ready to listen.</p></div><div><h4>Explore</h4><a href="#why">Why us</a><a href="#how">How it works</a><a href="#opportunities">Opportunities</a></div><div><h4>Say hello</h4><a href="mailto:hello@uncreator.club">hello@uncreator.club</a><a href="#">Instagram</a><a href="#">LinkedIn</a></div></div>
+      <div class="footer-bottom"><span>© 2026 Uncreator.club</span><span>Made for India’s new creative economy.</span></div>
+    </div>
+  </footer>
+
+  <dialog id="join-dialog" aria-labelledby="dialog-title">
+    <div class="dialog-content">
+      <div class="dialog-head"><h2 id="dialog-title">Come into the room.</h2><button class="dialog-close" type="button" aria-label="Close">×</button></div>
+      <form class="dialog-body" id="interest-form">
+        <p>Start by telling us which side of the table you’re joining from.</p>
+        <div class="persona" role="group" aria-label="Choose your path"><button type="button" data-persona="Creator" aria-pressed="true">I’m a creator</button><button type="button" data-persona="Brand" aria-pressed="false">I’m a brand</button></div>
+        <input type="hidden" name="persona" value="Creator">
+        <div class="field"><label for="join-name">Your name</label><input id="join-name" name="name" autocomplete="name" required placeholder="What should we call you?"></div>
+        <div class="field"><label for="join-email">Email</label><input id="join-email" name="email" type="email" autocomplete="email" required placeholder="you@example.com"></div>
+        <button class="button" type="submit">Request an invite <span class="arrow">↗</span></button>
+      </form>
+      <div class="success" role="status"><p class="eyebrow">You’re on the list</p><h3>See you in the room.</h3><p>We’ll be in touch with the right next step.</p><button class="button dialog-done" type="button">Done</button></div>
+    </div>
+  </dialog>
+
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const layoutNames = { scrapbook: 'Creator Scrapbook', noticeboard: 'Community Noticeboard', festival: 'Creator Festival', club: 'Internet Club' };
+      const paletteNames = { carnival: 'Creator Carnival', mango: 'Mango Disco', india: 'India’s New Creators' };
+      const note = document.querySelector('.current-note');
+      const layoutButtons = [...document.querySelectorAll('[data-layout-choice]')];
+      const paletteButtons = [...document.querySelectorAll('[data-palette-choice]')];
+
+      const setChoice = (type, value, buttons) => {
+        root.dataset[type] = value;
+        buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset[`${type}Choice`] === value)));
+        const params = new URLSearchParams(location.search);
+        params.set(type, value);
+        history.replaceState(null, '', `${location.pathname}?${params}${location.hash}`);
+        try { localStorage.setItem(`uncreator-${type}`, value); } catch (_) {}
+        note.textContent = `Viewing ${layoutNames[root.dataset.layout]} × ${paletteNames[root.dataset.palette]}`;
+      };
+
+      const params = new URLSearchParams(location.search);
+      let savedLayout, savedPalette;
+      try { savedLayout = localStorage.getItem('uncreator-layout'); savedPalette = localStorage.getItem('uncreator-palette'); } catch (_) {}
+      const initialLayout = params.get('layout') || savedLayout;
+      const initialPalette = params.get('palette') || savedPalette;
+      if (layoutNames[initialLayout]) setChoice('layout', initialLayout, layoutButtons);
+      if (paletteNames[initialPalette]) setChoice('palette', initialPalette, paletteButtons);
+      layoutButtons.forEach(button => button.addEventListener('click', () => setChoice('layout', button.dataset.layoutChoice, layoutButtons)));
+      paletteButtons.forEach(button => button.addEventListener('click', () => setChoice('palette', button.dataset.paletteChoice, paletteButtons)));
+
+      const switcher = document.querySelector('.switcher');
+      const switchToggle = document.querySelector('.switch-toggle');
+      switchToggle.addEventListener('click', () => {
+        const collapsed = switcher.classList.toggle('is-collapsed');
+        switchToggle.setAttribute('aria-expanded', String(!collapsed));
+        switchToggle.setAttribute('aria-label', collapsed ? 'Expand preview controls' : 'Collapse preview controls');
+        switchToggle.textContent = collapsed ? (matchMedia('(max-width: 700px)').matches ? '↑' : '←') : (matchMedia('(max-width: 700px)').matches ? '↓' : '→');
+      });
+
+      const dialog = document.querySelector('#join-dialog');
+      const form = document.querySelector('#interest-form');
+      const success = document.querySelector('.success');
+      const openDialog = () => { form.style.display = ''; success.style.display = 'none'; dialog.showModal(); };
+      document.querySelectorAll('.js-open-dialog').forEach(button => button.addEventListener('click', openDialog));
+      document.querySelector('.dialog-close').addEventListener('click', () => dialog.close());
+      document.querySelector('.dialog-done').addEventListener('click', () => dialog.close());
+      dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
+      document.querySelectorAll('[data-persona]').forEach(button => button.addEventListener('click', () => {
+        document.querySelectorAll('[data-persona]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+        form.elements.persona.value = button.dataset.persona;
+      }));
+      form.addEventListener('submit', event => {
+        event.preventDefault();
+        if (!form.reportValidity()) return;
+        form.style.display = 'none'; success.style.display = 'block';
+      });
+    })();
+  </script>
+</body>
+</html>
