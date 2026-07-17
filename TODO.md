@@ -20,13 +20,9 @@ This is the working list for improvements that can be picked up one at a time.
 
 ### P1 - Make the invite form real
 
-- [ ] Connect the invite form to a real submission destination.
-  - Decide whether submissions go to email, a form service, or an API.
-  - Show clear loading, success, and failure states.
-  - Acceptance: a test submission arrives at the chosen destination.
-
-- [ ] Add basic spam and duplicate-submission protection.
-  - Acceptance: obvious automated submissions are rejected or rate-limited.
+- [ ] Add stronger rate limiting and duplicate-submission protection.
+  - The deployed form already includes an origin allowlist and honeypot field.
+  - Acceptance: repeated automated submissions are rate-limited.
   - Acceptance: legitimate users receive a helpful response.
 
 ### P1 - Complete navigation and contact paths
@@ -108,6 +104,7 @@ This is the working list for improvements that can be picked up one at a time.
 
 ## Done
 
+- [x] Connected the invite form to AutoSend through a GitHub-deployed Cloudflare Worker, with loading, success, failure, validation, and honeypot handling. (2026-07-18)
 - [x] Created the initial homepage layout and palette playground. (2026-07-18)
 - [x] Selected Split Zine with Mango Disco for the production homepage. (2026-07-18)
 - [x] Added the Internet Club leaderboard to Split Zine. (2026-07-18)

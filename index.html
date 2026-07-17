@@ -337,6 +337,9 @@
     .field { display: grid; gap: 6px; margin: 14px 0; }
     .field label { font: 700 11px var(--display); text-transform: uppercase; letter-spacing: .1em; }
     .field input { width: 100%; min-height: 48px; border: 2px solid var(--ink); background: white; padding: 10px 12px; color: #222; }
+    .form-honeypot { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+    .form-status { min-height: 1.4em; margin: 12px 0 0; color: #9c241f; font-weight: 700; }
+    .dialog-body .button:disabled { cursor: wait; opacity: .65; }
     .success { display: none; padding: 44px 24px; text-align: center; }
     .success h3 { margin: 0 0 12px; font: 700 34px/1 var(--display); }
 
@@ -579,7 +582,9 @@
         <input type="hidden" name="persona" value="Creator">
         <div class="field"><label for="join-name">Your name</label><input id="join-name" name="name" autocomplete="name" required placeholder="What should we call you?"></div>
         <div class="field"><label for="join-email">Email</label><input id="join-email" name="email" type="email" autocomplete="email" required placeholder="you@example.com"></div>
+        <div class="form-honeypot" aria-hidden="true"><label for="join-website">Website</label><input id="join-website" name="website" tabindex="-1" autocomplete="off"></div>
         <button class="button" type="submit">Request an invite <span class="arrow">↗</span></button>
+        <p class="form-status" role="status" aria-live="polite"></p>
       </form>
       <div class="success" role="status"><p class="eyebrow">You’re on the list</p><h3>See you in the room.</h3><p>We’ll be in touch with the right next step.</p><button class="button dialog-done" type="button">Done</button></div>
     </div>
@@ -590,9 +595,14 @@
       const dialog = document.querySelector('#join-dialog');
       const form = document.querySelector('#interest-form');
       const success = document.querySelector('.success');
+      const submitButton = form.querySelector('[type="submit"]');
+      const formStatus = form.querySelector('.form-status');
+      const formEndpoint = 'https://uncreator-club-form.sunnykrgupta.workers.dev/submit';
       const openDialog = () => {
         form.style.display = '';
         success.style.display = 'none';
+        formStatus.textContent = '';
+        submitButton.disabled = false;
         dialog.showModal();
       };
 
@@ -608,11 +618,29 @@
         form.elements.persona.value = button.dataset.persona;
       }));
 
-      form.addEventListener('submit', event => {
+      form.addEventListener('submit', async event => {
         event.preventDefault();
         if (!form.reportValidity()) return;
-        form.style.display = 'none';
-        success.style.display = 'block';
+        submitButton.disabled = true;
+        formStatus.textContent = 'Saving your request…';
+
+        try {
+          const response = await fetch(formEndpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(Object.fromEntries(new FormData(form))),
+          });
+          const result = await response.json().catch(() => ({}));
+          if (!response.ok || !result.ok) throw new Error(result.error || 'Please try again.');
+
+          form.reset();
+          document.querySelectorAll('[data-persona]').forEach(item => item.setAttribute('aria-pressed', String(item.dataset.persona === 'Creator')));
+          form.style.display = 'none';
+          success.style.display = 'block';
+        } catch (error) {
+          formStatus.textContent = error.message || 'We could not save your request. Please try again.';
+          submitButton.disabled = false;
+        }
       });
     })();
   </script>
