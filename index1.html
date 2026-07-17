@@ -49,6 +49,42 @@
       --shadow: 6px 7px 0 rgba(45, 42, 38, .92);
     }
 
+    html[data-palette="nimbu"] {
+      --primary: #c9f227;
+      --secondary: #f6ffe1;
+      --accent: #6c4cff;
+      --highlight: #16c7a1;
+      --ink: #17171d;
+      --paper: #fffef7;
+      --muted: #5f6256;
+      --line: rgba(23, 23, 29, .18);
+      --shadow: 6px 7px 0 rgba(23, 23, 29, .92);
+    }
+
+    html[data-palette="rosechai"] {
+      --primary: #e95664;
+      --secondary: #fff1dc;
+      --accent: #7557d9;
+      --highlight: #e3a23b;
+      --ink: #30251f;
+      --paper: #fffbf3;
+      --muted: #745f54;
+      --line: rgba(48, 37, 31, .19);
+      --shadow: 6px 7px 0 rgba(48, 37, 31, .92);
+    }
+
+    html[data-palette="monsoon"] {
+      --primary: #ff8a4c;
+      --secondary: #191b27;
+      --accent: #50c9e8;
+      --highlight: #f4d35e;
+      --ink: #f7f2e7;
+      --paper: #242735;
+      --muted: #b9b7c4;
+      --line: rgba(247, 242, 231, .2);
+      --shadow: 6px 7px 0 rgba(80, 201, 232, .78);
+    }
+
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
@@ -123,7 +159,9 @@
     html[data-layout="scrapbook"] .stage-scrapbook,
     html[data-layout="noticeboard"] .stage-noticeboard,
     html[data-layout="festival"] .stage-festival,
-    html[data-layout="club"] .stage-club { display: block; }
+    html[data-layout="club"] .stage-club,
+    html[data-layout="zine"] .stage-zine,
+    html[data-layout="orbit"] .stage-orbit { display: block; }
 
     .polaroid { position: absolute; width: 56%; padding: 12px 12px 44px; background: white; border: 1px solid rgba(0,0,0,.12); box-shadow: 0 14px 28px rgba(34,34,34,.14); }
     .polaroid::after { content: attr(data-label); position: absolute; bottom: 9px; left: 18px; font: 700 20px var(--hand); color: #222; }
@@ -168,6 +206,28 @@
     .ranking { display: grid; grid-template-columns: 28px 1fr auto; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 12px; font-weight: 700; }
     .ranking:last-child { border: 0; }
     .ranking span:last-child { color: var(--accent); }
+
+    .zine-cover { height: 100%; position: relative; overflow: hidden; background: var(--highlight); border: 3px solid var(--ink); box-shadow: var(--shadow); }
+    .zine-cover::before { content: "ISSUE 001"; position: absolute; left: 24px; top: 22px; z-index: 4; font: 800 11px var(--display); letter-spacing: .15em; }
+    .zine-masthead { position: absolute; z-index: 3; left: -3px; right: -3px; top: 58px; padding: 7px 18px 12px; background: var(--ink); color: var(--secondary); font: 800 clamp(55px, 6vw, 84px)/.8 var(--display); letter-spacing: -.08em; white-space: nowrap; }
+    .zine-portrait { position: absolute; left: 20%; right: 8%; top: 158px; bottom: 24px; background: var(--accent); border: 3px solid var(--ink); overflow: hidden; }
+    .zine-portrait::before { content: ""; position: absolute; width: 38%; aspect-ratio: 1; border-radius: 50%; left: 33%; top: 13%; background: var(--primary); border: 3px solid var(--ink); }
+    .zine-portrait::after { content: ""; position: absolute; width: 82%; height: 58%; border-radius: 48% 48% 0 0; left: 9%; bottom: -13%; background: var(--secondary); border: 3px solid var(--ink); }
+    .zine-side { position: absolute; z-index: 4; left: 22px; bottom: 29px; writing-mode: vertical-rl; transform: rotate(180deg); font: 800 13px var(--display); letter-spacing: .13em; text-transform: uppercase; }
+    .zine-burst { position: absolute; z-index: 5; right: 5px; top: 138px; width: 108px; aspect-ratio: 1; display: grid; place-items: center; border-radius: 50%; background: var(--primary); border: 3px solid var(--ink); text-align: center; font: 800 12px/1.05 var(--display); transform: rotate(9deg); }
+
+    .orbit-map { height: 100%; position: relative; overflow: hidden; background: var(--ink); border: 3px solid var(--ink); box-shadow: var(--shadow); }
+    .orbit-ring { position: absolute; left: 50%; top: 50%; border: 2px solid color-mix(in srgb, var(--secondary) 72%, transparent); border-radius: 50%; transform: translate(-50%, -50%); }
+    .orbit-ring.r1 { width: 180px; aspect-ratio: 1; }
+    .orbit-ring.r2 { width: 340px; aspect-ratio: 1; }
+    .orbit-ring.r3 { width: 510px; aspect-ratio: 1; }
+    .orbit-core { position: absolute; z-index: 3; left: 50%; top: 50%; width: 120px; aspect-ratio: 1; display: grid; place-items: center; border-radius: 50%; transform: translate(-50%, -50%); background: var(--primary); color: var(--ink); border: 3px solid var(--secondary); font: 800 38px var(--display); }
+    .orbit-node { position: absolute; z-index: 4; min-width: 92px; padding: 10px 12px; background: var(--paper); color: var(--ink); border: 2px solid var(--secondary); font: 700 11px/1.1 var(--display); box-shadow: 3px 3px 0 var(--accent); }
+    .orbit-node.n1 { left: 7%; top: 18%; transform: rotate(-4deg); }
+    .orbit-node.n2 { right: 5%; top: 23%; transform: rotate(5deg); }
+    .orbit-node.n3 { left: 11%; bottom: 15%; transform: rotate(3deg); }
+    .orbit-node.n4 { right: 8%; bottom: 12%; transform: rotate(-3deg); }
+    .orbit-caption { position: absolute; z-index: 3; left: 20px; right: 20px; bottom: 18px; color: var(--secondary); font: 700 10px var(--display); letter-spacing: .12em; text-align: center; text-transform: uppercase; }
 
     .ticker { overflow: hidden; border-block: 2px solid var(--ink); background: var(--highlight); }
     .ticker-track { width: max-content; display: flex; gap: 32px; padding: 12px 0; font: 800 14px/1 var(--display); text-transform: uppercase; animation: ticker 25s linear infinite; }
@@ -228,7 +288,7 @@
       box-shadow: var(--shadow);
       transition: transform .25s ease;
     }
-    .switcher.is-collapsed { transform: translateX(calc(100% - 52px)); }
+    .switcher.is-collapsed { transform: translateX(calc(100% + 40px)); }
     .switcher-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 48px; padding: 10px 12px; border-bottom: 2px solid var(--ink); background: var(--ink); color: var(--secondary); }
     .switcher-head strong { font: 700 11px var(--display); letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; }
     .switch-toggle { border: 0; width: 28px; height: 28px; padding: 0; background: var(--highlight); color: var(--ink); cursor: pointer; font-weight: 800; }
@@ -245,7 +305,12 @@
     .carnival-swatch i:nth-child(1) { background:#ff6f61; } .carnival-swatch i:nth-child(2) { background:#2d9cdb; } .carnival-swatch i:nth-child(3) { background:#f9c74f; }
     .mango-swatch i:nth-child(1) { background:#ff6b35; } .mango-swatch i:nth-child(2) { background:#1fa6a6; } .mango-swatch i:nth-child(3) { background:#ffb703; }
     .india-swatch i:nth-child(1) { background:#f45b69; } .india-swatch i:nth-child(2) { background:#4361ee; } .india-swatch i:nth-child(3) { background:#f4a261; }
+    .nimbu-swatch i:nth-child(1) { background:#c9f227; } .nimbu-swatch i:nth-child(2) { background:#6c4cff; } .nimbu-swatch i:nth-child(3) { background:#16c7a1; }
+    .rosechai-swatch i:nth-child(1) { background:#e95664; } .rosechai-swatch i:nth-child(2) { background:#7557d9; } .rosechai-swatch i:nth-child(3) { background:#e3a23b; }
+    .monsoon-swatch i:nth-child(1) { background:#ff8a4c; } .monsoon-swatch i:nth-child(2) { background:#50c9e8; } .monsoon-swatch i:nth-child(3) { background:#f4d35e; }
     .current-note { padding-top: 10px; border-top: 1px solid var(--line); font-size: 10px; color: var(--muted); }
+    .switcher-reopen { position: fixed; z-index: 89; right: 0; top: 120px; min-height: 46px; padding: 11px 13px; border: 2px solid var(--ink); border-right: 0; background: var(--highlight); color: var(--ink); font: 700 11px var(--display); letter-spacing: .08em; text-transform: uppercase; cursor: pointer; writing-mode: vertical-rl; transform: translateX(110%); opacity: 0; pointer-events: none; transition: transform .22s ease, opacity .22s ease; }
+    .switcher.is-collapsed + .switcher-reopen { transform: translateX(0); opacity: 1; pointer-events: auto; }
 
     dialog { width: min(570px, calc(100% - 32px)); border: 2px solid var(--ink); padding: 0; background: var(--paper); color: var(--ink); box-shadow: 10px 12px 0 var(--ink); }
     dialog::backdrop { background: rgba(34,34,34,.68); backdrop-filter: blur(4px); }
@@ -298,14 +363,34 @@
     html[data-layout="club"] .bridge-card { min-height: 500px; }
     html[data-layout="club"] .footer { border-top: 1px solid rgba(255,255,255,.15); }
 
+    html[data-layout="zine"] .hero-grid { grid-template-columns: .9fr 1.1fr; }
+    html[data-layout="zine"] .hero-copy { order: 2; padding-left: 22px; border-left: 8px solid var(--primary); }
+    html[data-layout="zine"] .stage { order: 1; }
+    html[data-layout="zine"] .hero h1 { font-size: clamp(52px, 6.4vw, 94px); }
+    html[data-layout="zine"] .section-head { padding-bottom: 28px; border-bottom: 8px solid var(--ink); }
+    html[data-layout="zine"] .section h2 { text-transform: uppercase; }
+    html[data-layout="zine"] .bridge-card:first-child { transform: translateY(26px); }
+
+    html[data-layout="orbit"] .hero-grid { grid-template-columns: 1fr; gap: 46px; }
+    html[data-layout="orbit"] .hero-copy { text-align: center; }
+    html[data-layout="orbit"] .hero h1, html[data-layout="orbit"] .hero-lede { margin-inline: auto; }
+    html[data-layout="orbit"] .hero-actions, html[data-layout="orbit"] .micro-proof { justify-content: center; }
+    html[data-layout="orbit"] .stage { width: min(780px, 100%); min-height: 560px; margin: 0 auto; }
+    html[data-layout="orbit"] .section-head { grid-template-columns: 1fr; text-align: center; }
+    html[data-layout="orbit"] .section-intro { margin-inline: auto; }
+    html[data-layout="orbit"] .bridge-card { border-radius: 50% 50% 8px 8px; padding-top: 82px; text-align: center; }
+    html[data-layout="orbit"] .bridge-card h3, html[data-layout="orbit"] .bridge-card p { margin-inline: auto; }
+
     @media (max-width: 980px) {
       .navlinks a:not(.button) { display: none; }
-      .hero-grid, html[data-layout="noticeboard"] .hero-grid, html[data-layout="club"] .hero-grid { grid-template-columns: 1fr; }
+      .hero-grid, html[data-layout="noticeboard"] .hero-grid, html[data-layout="club"] .hero-grid, html[data-layout="zine"] .hero-grid { grid-template-columns: 1fr; }
       .hero { padding-top: 64px; }
       .hero-copy { text-align: center; }
       .hero h1, .hero-lede { margin-inline: auto; }
       .hero-actions, .micro-proof { justify-content: center; }
       .stage { width: min(590px, 100%); margin: 0 auto; }
+      html[data-layout="zine"] .hero-copy { order: 1; padding-left: 0; border-left: 0; }
+      html[data-layout="zine"] .stage { order: 2; }
       .section-head { grid-template-columns: 1fr; gap: 20px; }
       .opportunities { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -343,8 +428,10 @@
       .footer-grid > :first-child { grid-column: auto; }
       .footer-bottom { flex-direction: column; }
       .switcher { top: auto; bottom: 12px; right: 12px; left: 12px; width: auto; max-height: 70vh; overflow: auto; }
-      .switcher.is-collapsed { transform: translateY(calc(100% - 50px)); }
-      .choice-grid { grid-template-columns: repeat(4, 1fr); }
+      .switcher.is-collapsed { transform: translateY(calc(100% + 24px)); }
+      .switcher-reopen { top: auto; right: 12px; bottom: 12px; border-right: 2px solid var(--ink); writing-mode: horizontal-tb; transform: translateY(80px); }
+      .switcher.is-collapsed + .switcher-reopen { transform: translateY(0); }
+      .choice-grid { grid-template-columns: repeat(3, 1fr); }
       .choice { text-align: center; font-size: 9px; padding: 5px; }
       .palette-list { grid-template-columns: repeat(3, 1fr); }
       .palette-choice { grid-template-columns: 1fr; }
@@ -375,7 +462,7 @@
   <aside class="switcher" aria-label="Homepage preview controls">
     <div class="switcher-head">
       <strong>Try a direction</strong>
-      <button class="switch-toggle" type="button" aria-label="Collapse preview controls" aria-expanded="true">→</button>
+      <button class="switch-toggle" type="button" aria-label="Collapse preview controls" aria-expanded="true">×</button>
     </div>
     <div class="switcher-body">
       <p class="control-label">Layout</p>
@@ -384,16 +471,22 @@
         <button class="choice" data-layout-choice="noticeboard" aria-pressed="false">Noticeboard</button>
         <button class="choice" data-layout-choice="festival" aria-pressed="false">Festival</button>
         <button class="choice" data-layout-choice="club" aria-pressed="false">Internet club</button>
+        <button class="choice" data-layout-choice="zine" aria-pressed="false">Split zine</button>
+        <button class="choice" data-layout-choice="orbit" aria-pressed="false">Network orbit</button>
       </div>
       <p class="control-label">Colour story</p>
       <div class="palette-list" role="group" aria-label="Choose colour palette">
         <button class="palette-choice" data-palette-choice="carnival" aria-pressed="true"><span class="swatches carnival-swatch"><i></i><i></i><i></i></span><span>Creator Carnival</span></button>
         <button class="palette-choice" data-palette-choice="mango" aria-pressed="false"><span class="swatches mango-swatch"><i></i><i></i><i></i></span><span>Mango Disco</span></button>
         <button class="palette-choice" data-palette-choice="india" aria-pressed="false"><span class="swatches india-swatch"><i></i><i></i><i></i></span><span>India’s New Creators</span></button>
+        <button class="palette-choice" data-palette-choice="nimbu" aria-pressed="false"><span class="swatches nimbu-swatch"><i></i><i></i><i></i></span><span>Neon Nimbu</span></button>
+        <button class="palette-choice" data-palette-choice="rosechai" aria-pressed="false"><span class="swatches rosechai-swatch"><i></i><i></i><i></i></span><span>Rose Chai</span></button>
+        <button class="palette-choice" data-palette-choice="monsoon" aria-pressed="false"><span class="swatches monsoon-swatch"><i></i><i></i><i></i></span><span>Monsoon After Dark</span></button>
       </div>
       <div class="current-note" aria-live="polite">Viewing Creator Scrapbook × Creator Carnival</div>
     </div>
   </aside>
+  <button class="switcher-reopen" type="button" aria-label="Open design options">Design options ↑</button>
 
   <main id="main">
     <section class="hero" id="top">
@@ -433,6 +526,12 @@
           <div class="stage-panel stage-club" aria-hidden="true">
             <div class="member-card"><div class="card-top"><span>Uncreator.club</span><span>Founding member</span></div><div class="badge">01</div><h3>Naya Sharma<br><small>Culture maker · Mumbai</small></h3></div>
             <div class="rankings"><p class="eyebrow">This week in the club</p><div class="ranking"><span>01</span><span>Food storytellers</span><span>+42%</span></div><div class="ranking"><span>02</span><span>Micro beauty voices</span><span>+31%</span></div><div class="ranking"><span>03</span><span>Homegrown fashion</span><span>+24%</span></div></div>
+          </div>
+          <div class="stage-panel stage-zine" aria-hidden="true">
+            <div class="zine-cover"><div class="zine-masthead">NEW VOICES</div><div class="zine-portrait"></div><span class="zine-side">Culture makers annual</span><span class="zine-burst">THE ROOM<br>IS OPEN ↗</span></div>
+          </div>
+          <div class="stage-panel stage-orbit" aria-hidden="true">
+            <div class="orbit-map"><span class="orbit-ring r1"></span><span class="orbit-ring r2"></span><span class="orbit-ring r3"></span><span class="orbit-core">UC</span><span class="orbit-node n1">CREATOR<br>MUMBAI</span><span class="orbit-node n2">BRAND<br>BENGALURU</span><span class="orbit-node n3">STORY<br>JAIPUR</span><span class="orbit-node n4">COMMUNITY<br>EVERYWHERE</span><span class="orbit-caption">A living network for better creative work</span></div>
           </div>
         </div>
       </div>
@@ -501,8 +600,8 @@
   <script>
     (() => {
       const root = document.documentElement;
-      const layoutNames = { scrapbook: 'Creator Scrapbook', noticeboard: 'Community Noticeboard', festival: 'Creator Festival', club: 'Internet Club' };
-      const paletteNames = { carnival: 'Creator Carnival', mango: 'Mango Disco', india: 'India’s New Creators' };
+      const layoutNames = { scrapbook: 'Creator Scrapbook', noticeboard: 'Community Noticeboard', festival: 'Creator Festival', club: 'Internet Club', zine: 'Split Zine', orbit: 'Network Orbit' };
+      const paletteNames = { carnival: 'Creator Carnival', mango: 'Mango Disco', india: 'India’s New Creators', nimbu: 'Neon Nimbu', rosechai: 'Rose Chai', monsoon: 'Monsoon After Dark' };
       const note = document.querySelector('.current-note');
       const layoutButtons = [...document.querySelectorAll('[data-layout-choice]')];
       const paletteButtons = [...document.querySelectorAll('[data-palette-choice]')];
@@ -529,12 +628,16 @@
 
       const switcher = document.querySelector('.switcher');
       const switchToggle = document.querySelector('.switch-toggle');
-      switchToggle.addEventListener('click', () => {
-        const collapsed = switcher.classList.toggle('is-collapsed');
+      const switchReopen = document.querySelector('.switcher-reopen');
+      const setSwitcherCollapsed = collapsed => {
+        switcher.classList.toggle('is-collapsed', collapsed);
         switchToggle.setAttribute('aria-expanded', String(!collapsed));
         switchToggle.setAttribute('aria-label', collapsed ? 'Expand preview controls' : 'Collapse preview controls');
-        switchToggle.textContent = collapsed ? (matchMedia('(max-width: 700px)').matches ? '↑' : '←') : (matchMedia('(max-width: 700px)').matches ? '↓' : '→');
-      });
+        switchToggle.textContent = '×';
+        if (!collapsed) switchToggle.focus();
+      };
+      switchToggle.addEventListener('click', () => setSwitcherCollapsed(true));
+      switchReopen.addEventListener('click', () => setSwitcherCollapsed(false));
 
       const dialog = document.querySelector('#join-dialog');
       const form = document.querySelector('#interest-form');
