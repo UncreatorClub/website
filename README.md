@@ -2,6 +2,8 @@
 
 The public homepage and registration experience for Uncreator.club: a club for creators and brands to find thoughtful opportunities, collaborations, and community.
 
+Production: [https://uncreator.club](https://uncreator.club)
+
 The production site uses the **Split Zine** direction with the **Mango Disco** palette. It is a lightweight static site; shared form infrastructure is owned by the private workspace repository.
 
 ## What's in the project
