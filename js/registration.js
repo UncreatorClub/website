@@ -11,7 +11,10 @@
   const progressLabel = form.querySelector('[data-progress-label]');
   const progressBar = form.querySelector('[data-progress-bar]');
   const totalSteps = 6;
-  const formEndpoint = 'https://uncreator-club-form.sunnykrgupta.workers.dev/submit';
+  const localHosts = new Set(['localhost', '127.0.0.1']);
+  const formEndpoint = localHosts.has(window.location.hostname)
+    ? 'http://127.0.0.1:8787/submit'
+    : 'https://workers.uncreator.club/submit';
   let currentStep = 1;
   let creatorLinkCount = 1;
 

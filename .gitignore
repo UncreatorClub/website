@@ -1,8 +1,6 @@
 # OS Files
 .DS_Store
 .wrangler/
-.dev.vars*
-worker/node_modules/
 Thumbs.db
 desktop.ini
 

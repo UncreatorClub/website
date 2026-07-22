@@ -665,7 +665,10 @@
       const success = document.querySelector('.success');
       const submitButton = form.querySelector('[type="submit"]');
       const formStatus = form.querySelector('.form-status');
-      const formEndpoint = 'https://uncreator-club-form.sunnykrgupta.workers.dev/submit';
+      const localHosts = new Set(['localhost', '127.0.0.1']);
+      const formEndpoint = localHosts.has(window.location.hostname)
+        ? 'http://127.0.0.1:8787/submit'
+        : 'https://workers.uncreator.club/submit';
       const openDialog = () => { form.style.display = ''; success.style.display = 'none'; formStatus.textContent = ''; submitButton.disabled = false; dialog.showModal(); };
       document.querySelectorAll('.js-open-dialog').forEach(button => button.addEventListener('click', openDialog));
       document.querySelector('.dialog-close').addEventListener('click', () => dialog.close());
